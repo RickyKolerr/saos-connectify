@@ -68,7 +68,7 @@ export default {
 					blue: '#2684FF',
 					teal: '#36B37E',
 					gray: {
-						light: '#F7FAFC',
+						light: '#1A1F2C',
 						dark: '#172A4E',
 					}
 				}

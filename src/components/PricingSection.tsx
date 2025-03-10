@@ -18,33 +18,33 @@ const PricingTier = ({
   delay: string;
 }) => (
   <div 
-    className={`rounded-xl p-6 ${primary ? 'border-2 border-saos-blue shadow-lg' : 'border border-gray-200'} 
-    relative flex flex-col h-full bg-white opacity-0 animate-fade-in`}
+    className={`rounded-xl p-6 ${primary ? 'border-2 border-blue-500 shadow-lg' : 'border border-border'} 
+    relative flex flex-col h-full ${primary ? 'bg-blue-900/20' : 'glass-card'} opacity-0 animate-fade-in`}
     style={{ animationDelay: delay }}
   >
     {primary && (
       <div className="absolute top-0 right-0 transform translate-x-1/4 -translate-y-1/3">
-        <div className="bg-saos-teal text-white text-xs font-bold px-3 py-1 rounded-full">
+        <div className="bg-teal-500 text-background text-xs font-bold px-3 py-1 rounded-full">
           POPULAR
         </div>
       </div>
     )}
     <div className="mb-4">
-      <h3 className="text-lg font-semibold text-saos-navy">{name}</h3>
+      <h3 className="text-lg font-semibold text-foreground">{name}</h3>
       <div className="mt-4 mb-2">
-        <span className="text-3xl font-bold text-saos-navy">{price}</span>
-        {price !== 'Custom' && <span className="text-gray-500">/month</span>}
+        <span className="text-3xl font-bold text-foreground">{price}</span>
+        {price !== 'Custom' && <span className="text-muted-foreground">/month</span>}
       </div>
-      <p className="text-sm text-gray-500">{description}</p>
+      <p className="text-sm text-muted-foreground">{description}</p>
     </div>
     
     <div className="mt-6 space-y-3 flex-grow">
       {features.map((feature, index) => (
         <div className="flex items-start" key={index}>
-          <div className={`flex-shrink-0 w-5 h-5 rounded-full ${primary ? 'bg-saos-blue' : 'bg-saos-teal'} flex items-center justify-center mr-3 mt-0.5`}>
-            <Check className="h-3 w-3 text-white" />
+          <div className={`flex-shrink-0 w-5 h-5 rounded-full ${primary ? 'bg-blue-500' : 'bg-teal-500'} flex items-center justify-center mr-3 mt-0.5`}>
+            <Check className="h-3 w-3 text-background" />
           </div>
-          <p className="text-sm text-gray-600">{feature}</p>
+          <p className="text-sm text-muted-foreground">{feature}</p>
         </div>
       ))}
     </div>
@@ -52,8 +52,8 @@ const PricingTier = ({
     <div className="mt-8">
       <Button
         className={`w-full ${primary 
-          ? 'bg-saos-blue hover:bg-saos-navy text-white' 
-          : 'bg-white text-saos-navy hover:bg-gray-100 border border-gray-300'}`}
+          ? 'bg-blue-500 hover:bg-blue-600 text-white' 
+          : 'bg-background/50 hover:bg-background/70 text-foreground border border-border'}`}
       >
         {primary ? 'Get Started' : 'Learn More'}
       </Button>
@@ -63,16 +63,16 @@ const PricingTier = ({
 
 const PricingSection = () => {
   return (
-    <section id="pricing" className="py-16 bg-saos-gray-light">
+    <section id="pricing" className="py-16 bg-secondary/20">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center text-center space-y-4 mb-12">
-          <div className="inline-block rounded-lg bg-saos-blue/10 px-3 py-1 text-sm text-saos-blue">
+          <div className="inline-block rounded-lg bg-blue-500/20 px-3 py-1 text-sm text-blue-400">
             Pricing
           </div>
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-saos-navy">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-gradient">
             Simple, transparent pricing
           </h2>
-          <p className="max-w-[700px] text-gray-500 md:text-xl">
+          <p className="max-w-[700px] text-muted-foreground md:text-xl">
             Choose the plan that's right for you, with no surprises or hidden fees.
           </p>
         </div>
@@ -125,10 +125,10 @@ const PricingSection = () => {
         </div>
         
         <div className="mt-12 max-w-3xl mx-auto text-center opacity-0 animate-fade-in" style={{ animationDelay: "0.4s" }}>
-          <p className="text-gray-500 mb-4">
+          <p className="text-muted-foreground mb-4">
             All plans include our core features. Need something different? We offer custom pricing for special requirements.
           </p>
-          <Button variant="outline" className="mx-auto">
+          <Button variant="outline" className="mx-auto border-border text-foreground">
             Contact Sales
           </Button>
         </div>

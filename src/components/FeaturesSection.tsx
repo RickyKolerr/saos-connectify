@@ -15,27 +15,27 @@ interface FeatureProps {
 }
 
 const Feature = ({ icon, title, description, delay }: FeatureProps) => (
-  <div className="flex flex-col items-center text-center p-4 md:p-6 rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow opacity-0 animate-fade-in" style={{ animationDelay: delay }}>
-    <div className="p-3 rounded-full bg-saos-blue/10 text-saos-blue mb-4">
+  <div className="flex flex-col items-center text-center p-4 md:p-6 rounded-xl glass-card opacity-0 animate-fade-in" style={{ animationDelay: delay }}>
+    <div className="p-3 rounded-full bg-blue-500/20 text-blue-400 mb-4">
       {icon}
     </div>
-    <h3 className="text-xl font-semibold mb-2 text-saos-navy">{title}</h3>
-    <p className="text-gray-500">{description}</p>
+    <h3 className="text-xl font-semibold mb-2 text-foreground">{title}</h3>
+    <p className="text-muted-foreground">{description}</p>
   </div>
 );
 
 const FeaturesSection = () => {
   return (
-    <section id="features" className="py-16 bg-saos-gray-light">
+    <section id="features" className="py-16 bg-background">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center text-center space-y-4 mb-12">
-          <div className="inline-block rounded-lg bg-saos-blue/10 px-3 py-1 text-sm text-saos-blue">
+          <div className="inline-block rounded-lg bg-blue-500/20 px-3 py-1 text-sm text-blue-400">
             Key Features
           </div>
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-saos-navy">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-gradient">
             Everything you need to orchestrate AI
           </h2>
-          <p className="max-w-[700px] text-gray-500 md:text-xl">
+          <p className="max-w-[700px] text-muted-foreground md:text-xl">
             SAOS provides all the tools to manage your AI integrations in one place, with powerful features built for developers and businesses.
           </p>
         </div>
@@ -70,9 +70,9 @@ const FeaturesSection = () => {
             description="Monitor performance with dashboards and alerts (Slack/Email)."
             delay="0.5s"
           />
-          <div className="p-6 rounded-xl border border-dashed border-gray-300 bg-white/50 flex flex-col items-center justify-center text-center opacity-0 animate-fade-in" style={{ animationDelay: "0.6s" }}>
-            <h3 className="text-xl font-semibold mb-2 text-saos-blue">And Many More...</h3>
-            <p className="text-gray-500">Explore all the features in our documentation</p>
+          <div className="p-6 rounded-xl border border-dashed border-border glass-card flex flex-col items-center justify-center text-center opacity-0 animate-fade-in" style={{ animationDelay: "0.6s" }}>
+            <h3 className="text-xl font-semibold mb-2 text-blue-400">And Many More...</h3>
+            <p className="text-muted-foreground">Explore all the features in our documentation</p>
           </div>
         </div>
       </div>
