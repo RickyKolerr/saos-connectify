@@ -75,15 +75,15 @@
   }
   
   .card-highlight {
-    @apply bg-gradient-to-b from-blue-500/20 to-blue-800/20 backdrop-blur-md border border-blue-500/30 shadow-lg;
+    @apply bg-gradient-to-b from-violet-500/20 to-purple-800/20 backdrop-blur-md border border-violet-500/30 shadow-lg;
   }
 
   .text-glow {
-    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+    text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
   }
 
   .button-glow {
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
   }
 }
 
@@ -96,6 +96,15 @@
   }
 }
 
+@keyframes spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
 /* Add smooth scroll behavior */
 html {
   scroll-behavior: smooth;
@@ -103,5 +112,27 @@ html {
 
 /* Add selection styling */
 ::selection {
-  @apply bg-blue-500/30 text-foreground;
+  @apply bg-violet-500/30 text-foreground;
+}
+
+/* Glowing animations */
+@keyframes glow {
+  0%, 100% {
+    opacity: 0.8;
+    filter: blur(10px);
+  }
+  50% {
+    opacity: 0.4;
+    filter: blur(14px);
+  }
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
