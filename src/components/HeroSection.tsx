@@ -9,37 +9,39 @@ const HeroSection = () => {
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
           <div className="flex flex-col justify-center space-y-4 opacity-0 animate-fade-in" style={{ animationDelay: "0.2s" }}>
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl text-gradient">
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl text-gradient relative">
                 Supercharge Your AI Integration with orchesity
+                <div className="absolute -top-10 -left-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl"></div>
+                <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-teal-500/10 rounded-full blur-3xl"></div>
               </h1>
               <p className="max-w-[600px] text-muted-foreground md:text-xl">
                 Plug-and-play middleware to orchestrate AI APIs effortlessly—scalable, secure, and ready in 5 minutes.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 min-[400px]:gap-4">
-              <Button className="bg-blue-500 hover:bg-blue-600 text-white">
+              <Button className="bg-gradient-to-r from-blue-600 to-blue-500 hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:opacity-90 text-white transition-all duration-300">
                 Get Started Now
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-              <Button variant="outline" className="border-border text-foreground hover:bg-secondary/50">
+              <Button variant="outline" className="border-border text-foreground hover:bg-secondary/50 hover:border-blue-500/30 hover:shadow-[0_0_15px_rgba(59,130,246,0.2)] transition-all duration-300">
                 Request Demo
               </Button>
             </div>
             <div className="flex items-center space-x-4 text-sm">
-              <div className="flex items-center">
-                <div className="h-4 w-4 rounded-full bg-teal-500 mr-2"></div>
-                <span className="text-muted-foreground">No credit card required</span>
+              <div className="flex items-center group">
+                <div className="h-4 w-4 rounded-full bg-gradient-to-r from-teal-500 to-teal-400 mr-2 group-hover:shadow-[0_0_10px_rgba(20,184,166,0.5)] transition-all duration-300"></div>
+                <span className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">No credit card required</span>
               </div>
-              <div className="flex items-center">
-                <div className="h-4 w-4 rounded-full bg-teal-500 mr-2"></div>
-                <span className="text-muted-foreground">Free for 14 days</span>
+              <div className="flex items-center group">
+                <div className="h-4 w-4 rounded-full bg-gradient-to-r from-teal-500 to-teal-400 mr-2 group-hover:shadow-[0_0_10px_rgba(20,184,166,0.5)] transition-all duration-300"></div>
+                <span className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">Free for 14 days</span>
               </div>
             </div>
           </div>
           <div className="mx-auto lg:mr-0 opacity-0 animate-fade-in" style={{ animationDelay: "0.4s" }}>
             <div className="relative p-2">
               <div className="w-full h-full bg-gradient-to-r from-blue-500/30 via-blue-400/20 to-teal-400/30 opacity-30 blur-xl absolute inset-0 rounded-xl"></div>
-              <div className="relative rounded-xl overflow-hidden border border-border shadow-xl animate-float">
+              <div className="relative rounded-xl overflow-hidden border border-border shadow-xl animate-float hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] transition-all duration-500">
                 <svg
                   className="w-full h-auto"
                   viewBox="0 0 600 400"
@@ -52,24 +54,29 @@ const HeroSection = () => {
                     stroke="#60A5FA"
                     strokeWidth="8"
                     strokeLinecap="round"
+                    className="animate-[dash_3s_ease-in-out_infinite]"
+                    strokeDasharray="400"
+                    strokeDashoffset="400"
                   />
                   <path
                     d="M100 200H260"
                     stroke="#2684FF"
                     strokeWidth="8"
                     strokeLinecap="round"
+                    className="animate-pulse"
                   />
                   <path
                     d="M340 200H500"
                     stroke="#34D399"
                     strokeWidth="8"
                     strokeLinecap="round"
+                    className="animate-pulse"
                   />
-                  <circle cx="100" cy="120" r="20" fill="#60A5FA" />
-                  <circle cx="100" cy="280" r="20" fill="#60A5FA" />
-                  <circle cx="500" cy="120" r="20" fill="#34D399" />
-                  <circle cx="500" cy="280" r="20" fill="#34D399" />
-                  <circle cx="300" cy="200" r="30" fill="#2684FF" />
+                  <circle cx="100" cy="120" r="20" fill="#60A5FA" className="animate-pulse" />
+                  <circle cx="100" cy="280" r="20" fill="#60A5FA" className="animate-pulse" />
+                  <circle cx="500" cy="120" r="20" fill="#34D399" className="animate-pulse" />
+                  <circle cx="500" cy="280" r="20" fill="#34D399" className="animate-pulse" />
+                  <circle cx="300" cy="200" r="30" fill="#2684FF" className="animate-pulse" />
                   <path
                     d="M100 120L240 120C251.046 120 260 128.954 260 140V200"
                     stroke="#60A5FA"

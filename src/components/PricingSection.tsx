@@ -1,6 +1,7 @@
 
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
 const PricingTier = ({ 
   name, 
@@ -19,12 +20,13 @@ const PricingTier = ({
 }) => (
   <div 
     className={`rounded-xl p-6 ${primary ? 'border-2 border-blue-500 shadow-lg' : 'border border-border'} 
-    relative flex flex-col h-full ${primary ? 'bg-blue-900/20' : 'glass-card'} opacity-0 animate-fade-in`}
+    relative flex flex-col h-full ${primary ? 'bg-blue-900/20' : 'glass-card'} opacity-0 animate-fade-in
+    hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] transition-all duration-500 transform hover:scale-[1.02]`}
     style={{ animationDelay: delay }}
   >
     {primary && (
       <div className="absolute top-0 right-0 transform translate-x-1/4 -translate-y-1/3">
-        <div className="bg-teal-500 text-background text-xs font-bold px-3 py-1 rounded-full">
+        <div className="bg-gradient-to-r from-teal-500 to-teal-400 text-background text-xs font-bold px-3 py-1 rounded-full shadow-[0_0_10px_rgba(20,184,166,0.5)]">
           POPULAR
         </div>
       </div>
@@ -32,7 +34,7 @@ const PricingTier = ({
     <div className="mb-4">
       <h3 className="text-lg font-semibold text-foreground">{name}</h3>
       <div className="mt-4 mb-2">
-        <span className="text-3xl font-bold text-foreground">{price}</span>
+        <span className="text-3xl font-bold text-gradient">{price}</span>
         {price !== 'Custom' && <span className="text-muted-foreground">/month</span>}
       </div>
       <p className="text-sm text-muted-foreground">{description}</p>
@@ -40,11 +42,11 @@ const PricingTier = ({
     
     <div className="mt-6 space-y-3 flex-grow">
       {features.map((feature, index) => (
-        <div className="flex items-start" key={index}>
-          <div className={`flex-shrink-0 w-5 h-5 rounded-full ${primary ? 'bg-blue-500' : 'bg-teal-500'} flex items-center justify-center mr-3 mt-0.5`}>
+        <div className="flex items-start group" key={index}>
+          <div className={`flex-shrink-0 w-5 h-5 rounded-full ${primary ? 'bg-blue-500' : 'bg-teal-500'} flex items-center justify-center mr-3 mt-0.5 group-hover:shadow-[0_0_10px_rgba(59,130,246,0.5)] transition-all duration-300`}>
             <Check className="h-3 w-3 text-background" />
           </div>
-          <p className="text-sm text-muted-foreground">{feature}</p>
+          <p className="text-sm text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300">{feature}</p>
         </div>
       ))}
     </div>
@@ -52,8 +54,8 @@ const PricingTier = ({
     <div className="mt-8">
       <Button
         className={`w-full ${primary 
-          ? 'bg-blue-500 hover:bg-blue-600 text-white' 
-          : 'bg-background/50 hover:bg-background/70 text-foreground border border-border'}`}
+          ? 'bg-gradient-to-r from-blue-600 to-blue-500 hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:opacity-90 text-white' 
+          : 'bg-background/50 hover:bg-background/70 text-foreground border border-border hover:border-blue-500/30'} transition-all duration-300`}
       >
         {primary ? 'Get Started' : 'Learn More'}
       </Button>
@@ -128,9 +130,19 @@ const PricingSection = () => {
           <p className="text-muted-foreground mb-4">
             All plans include our core features. Need something different? We offer custom pricing for special requirements.
           </p>
-          <Button variant="outline" className="mx-auto border-border text-foreground">
-            Contact Sales
-          </Button>
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <Button variant="outline" className="mx-auto border-border text-foreground hover:border-blue-500/30 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all duration-300">
+                Contact Sales
+              </Button>
+            </HoverCardTrigger>
+            <HoverCardContent className="bg-background/80 backdrop-blur-md border border-blue-500/20">
+              <div className="text-sm">
+                <strong className="text-blue-400">Enterprise Support</strong>
+                <p className="mt-1 text-muted-foreground">Our team will create a custom plan tailored to your organization's specific needs.</p>
+              </div>
+            </HoverCardContent>
+          </HoverCard>
         </div>
       </div>
     </section>

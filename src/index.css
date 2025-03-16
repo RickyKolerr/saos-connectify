@@ -55,6 +55,10 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+
+  html {
+    @apply scroll-smooth;
+  }
 }
 
 @layer utilities {
@@ -73,4 +77,31 @@
   .card-highlight {
     @apply bg-gradient-to-b from-blue-500/20 to-blue-800/20 backdrop-blur-md border border-blue-500/30 shadow-lg;
   }
+
+  .text-glow {
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+  }
+
+  .button-glow {
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+  }
+}
+
+@keyframes dash {
+  from {
+    stroke-dashoffset: 400;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Add smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Add selection styling */
+::selection {
+  @apply bg-blue-500/30 text-foreground;
 }
