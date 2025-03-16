@@ -17,7 +17,7 @@ const BenefitsSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 opacity-0 animate-fade-in" style={{ animationDelay: "0.1s" }}>
             <div className="inline-block rounded-lg bg-teal-500/20 px-3 py-1 text-sm text-teal-400">
-              Why Choose orchesity
+              Why Choose ORCHESITY
             </div>
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl lg:text-5xl text-gradient">
               Enterprise-grade AI infrastructure, without the complexity

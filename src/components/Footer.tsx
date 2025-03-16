@@ -1,4 +1,3 @@
-
 import { Github, Twitter, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -9,7 +8,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div className="space-y-4">
             <h3 className="text-xl font-bold text-gradient relative inline-block">
-              orchesity
+              ORCHESITY
               <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-teal-400 transition-all duration-300 group-hover:w-full"></div>
             </h3>
             <p className="text-muted-foreground text-sm">Your bridge to smarter AI solutions.</p>
@@ -62,7 +61,7 @@ const Footer = () => {
         
         <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="text-sm text-muted-foreground mb-4 md:mb-0">
-            © {new Date().getFullYear()} orchesity. All rights reserved.
+            © {new Date().getFullYear()} ORCHESITY. All rights reserved.
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4">

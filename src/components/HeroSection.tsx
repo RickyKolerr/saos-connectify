@@ -10,7 +10,7 @@ const HeroSection = () => {
           <div className="flex flex-col justify-center space-y-4 opacity-0 animate-fade-in" style={{ animationDelay: "0.2s" }}>
             <div className="space-y-2">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl text-gradient relative">
-                Supercharge Your AI Integration with orchesity
+                Supercharge Your AI Integration with ORCHESITY
                 <div className="absolute -top-10 -left-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl"></div>
                 <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-teal-500/10 rounded-full blur-3xl"></div>
               </h1>
