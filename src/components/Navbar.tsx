@@ -11,7 +11,7 @@ const Navbar = () => {
       <div className="container flex justify-between items-center">
         <div className="flex items-center">
           <a href="/" className="text-2xl font-bold text-gradient">
-            SAOS
+            orchesity
           </a>
         </div>
 

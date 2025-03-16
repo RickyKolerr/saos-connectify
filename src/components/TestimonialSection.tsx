@@ -25,7 +25,7 @@ const TestimonialSection = () => {
                 
                 <div className="text-center md:text-left">
                   <blockquote className="text-lg md:text-xl mb-4 font-medium text-foreground">
-                    "SAOS cut our AI integration time by 70%—it's a game-changer for our team. We were able to switch between multiple AI providers without rewriting our code, and the cost savings have been substantial."
+                    "orchesity cut our AI integration time by 70%—it's a game-changer for our team. We were able to switch between multiple AI providers without rewriting our code, and the cost savings have been substantial."
                   </blockquote>
                   
                   <footer>

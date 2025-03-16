@@ -10,7 +10,7 @@ const HeroSection = () => {
           <div className="flex flex-col justify-center space-y-4 opacity-0 animate-fade-in" style={{ animationDelay: "0.2s" }}>
             <div className="space-y-2">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl text-gradient">
-                Supercharge Your AI Integration with SAOS
+                Supercharge Your AI Integration with orchesity
               </h1>
               <p className="max-w-[600px] text-muted-foreground md:text-xl">
                 Plug-and-play middleware to orchestrate AI APIs effortlessly—scalable, secure, and ready in 5 minutes.

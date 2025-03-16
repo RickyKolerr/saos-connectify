@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="container px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-gradient">SAOS</h3>
+            <h3 className="text-xl font-bold text-gradient">orchesity</h3>
             <p className="text-muted-foreground text-sm">Your bridge to smarter AI solutions.</p>
             <div className="flex space-x-4">
               <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
@@ -59,7 +59,7 @@ const Footer = () => {
         
         <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="text-sm text-muted-foreground mb-4 md:mb-0">
-            © {new Date().getFullYear()} SAOS. All rights reserved.
+            © {new Date().getFullYear()} orchesity. All rights reserved.
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4">
