@@ -3,12 +3,13 @@ import { useState } from "react";
 import { Menu, X, Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import AnimatedNavLine from "./AnimatedNavLine";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-black/90 backdrop-blur-md py-4 sticky top-0 z-50 shadow-md border-b border-white/10">
+    <nav className="bg-black/90 backdrop-blur-md py-4 sticky top-0 z-50 shadow-md border-b border-white/10 relative">
       <div className="container flex justify-between items-center">
         <div className="flex flex-col items-start">
           <Link to="/" className="text-2xl font-bold text-white relative group flex items-center gap-2">
@@ -63,6 +64,9 @@ const Navbar = () => {
           </Button>
         </div>
       </div>
+
+      {/* Animated line that responds to scrolling */}
+      <AnimatedNavLine />
 
       {/* Mobile Navigation Menu */}
       {isMenuOpen && (
