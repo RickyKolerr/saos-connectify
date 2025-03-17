@@ -2,8 +2,14 @@
 import Navbar from "@/components/Navbar";
 import FeaturesSection from "@/components/FeaturesSection";
 import Footer from "@/components/Footer";
+import { useEffect } from "react";
 
 const Features = () => {
+  useEffect(() => {
+    // Update document title when component mounts
+    document.title = "Features - ORCHESITY";
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-black via-[#0a0a14] to-[#0a0a1a] relative overflow-hidden">
       {/* Gradient orbs for enhanced background effect */}

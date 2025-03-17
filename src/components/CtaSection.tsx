@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 const CtaSection = () => {
   return (
-    <section className="py-16 bg-black relative overflow-hidden">
+    <section className="py-16 bg-black/40 relative overflow-hidden">
       {/* Abstract background elements */}
       <div className="absolute top-0 left-1/3 w-80 h-80 rounded-full bg-purple-900/10 blur-[80px] animate-pulse"></div>
       <div className="absolute bottom-0 right-1/3 w-96 h-96 rounded-full bg-blue-900/10 blur-[100px] animate-pulse" style={{ animationDelay: "1.5s" }}></div>

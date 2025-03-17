@@ -9,8 +9,14 @@ import TrustSection from "@/components/TrustSection";
 import WorkflowSection from "@/components/WorkflowSection";
 import FaqSection from "@/components/FaqSection";
 import Footer from "@/components/Footer";
+import { useEffect } from "react";
 
 const Index = () => {
+  useEffect(() => {
+    // Update document title when component mounts
+    document.title = "ORCHESITY - AI Orchestration Platform";
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-black via-[#0a0a14] to-[#0a0a1a] relative overflow-hidden">
       {/* Gradient orbs for enhanced background effect */}
