@@ -1,5 +1,6 @@
 
 import { Quote } from "lucide-react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const TestimonialSection = () => {
   return (
@@ -17,10 +18,11 @@ const TestimonialSection = () => {
               <Quote className="h-12 w-12 text-black/20 absolute top-6 left-6" />
               
               <div className="flex flex-col md:flex-row gap-8 items-center">
-                <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-r from-black/80 to-black/70 overflow-hidden flex-shrink-0 shadow-[0_0_15px_rgba(0,0,0,0.2)] hover:shadow-[0_0_20px_rgba(0,0,0,0.3)] transition-all duration-300">
-                  <svg className="w-full h-full text-white opacity-80" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
+                <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden flex-shrink-0 shadow-[0_0_15px_rgba(0,0,0,0.2)] hover:shadow-[0_0_20px_rgba(0,0,0,0.3)] transition-all duration-300">
+                  <Avatar className="w-full h-full">
+                    <AvatarImage src="/lovable-uploads/b113c385-3229-4cc8-bc6a-a77746e3ce51.png" alt="Rachel Le" className="object-cover" />
+                    <AvatarFallback className="w-full h-full text-white bg-black/80">RL</AvatarFallback>
+                  </Avatar>
                 </div>
                 
                 <div className="text-center md:text-left">
@@ -31,7 +33,7 @@ const TestimonialSection = () => {
                   </blockquote>
                   
                   <footer>
-                    <div className="font-semibold text-gradient">Sarah Chen</div>
+                    <div className="font-semibold text-gradient">Rachel Le</div>
                     <div className="text-sm text-muted-foreground">CTO at TechInnovate</div>
                   </footer>
                 </div>
