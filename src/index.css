@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -70,7 +71,7 @@
   }
 
   .glass-card {
-    @apply bg-secondary/90 border border-white/10 shadow-lg;
+    @apply bg-white/5 border border-white/10 shadow-lg;
   }
   
   .card-highlight {
@@ -86,12 +87,12 @@
   }
   
   .gradient-bg {
-    @apply bg-gradient-to-br from-black via-[#0d0d0d] to-[#121212];
+    @apply bg-gradient-to-br from-black via-[#0a0a14] to-[#050510];
   }
 
   .bg-gradient-soft {
-    background: radial-gradient(circle at top right, rgba(30, 30, 30, 0.4), transparent),
-              radial-gradient(circle at bottom left, rgba(40, 40, 40, 0.4), transparent);
+    background: radial-gradient(circle at top right, rgba(75, 75, 100, 0.2), transparent),
+              radial-gradient(circle at bottom left, rgba(90, 90, 120, 0.2), transparent);
   }
 }
 
@@ -143,4 +144,24 @@ html {
   100% {
     background-position: 200% 0;
   }
+}
+
+/* Gradient animations */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Gradient backgrounds for the site */
+.bg-mesh-gradient {
+  background: linear-gradient(125deg, #000000, #050510, #0a0a14, #070718);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
 }

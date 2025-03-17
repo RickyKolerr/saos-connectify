@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -8,11 +8,12 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-black/90 backdrop-blur-sm py-4 sticky top-0 z-50 shadow-md border-b border-white/10">
+    <nav className="bg-black/90 backdrop-blur-md py-4 sticky top-0 z-50 shadow-md border-b border-white/10">
       <div className="container flex justify-between items-center">
         <div className="flex flex-col items-start">
-          <Link to="/" className="text-2xl font-bold text-white relative group">
-            ORCHESITY
+          <Link to="/" className="text-2xl font-bold text-white relative group flex items-center gap-2">
+            <Layers className="h-6 w-6 text-white/90 group-hover:text-white transition-colors duration-300" />
+            <span>ORCHESITY</span>
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white/60 transition-all duration-300 group-hover:w-full"></span>
           </Link>
           <span className="text-xs text-white/50">Powered by Kolerr Technologies</span>
