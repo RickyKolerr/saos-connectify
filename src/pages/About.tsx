@@ -1,16 +1,10 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import SEOHead from "@/components/SEOHead";
 
 const About = () => {
   return (
     <div className="min-h-screen flex flex-col bg-black text-white">
-      <SEOHead 
-        title="About ORCHESITY - Our Mission & Vision"
-        description="Learn about ORCHESITY's mission to democratize AI integration and orchestration for businesses of all sizes. Discover our team, values, and vision."
-        keywords="ORCHESITY team, AI integration, AI orchestration mission, about ORCHESITY, AI platform company"
-      />
       <Navbar />
       <main className="flex-grow">
         <section className="py-16 md:py-24">
