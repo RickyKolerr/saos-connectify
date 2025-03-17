@@ -75,7 +75,7 @@
   }
   
   .card-highlight {
-    @apply bg-gradient-to-b from-white/5 to-white/3 border border-white/10 shadow-lg;
+    @apply bg-gradient-to-b from-white/5 to-white/10 border border-white/10 shadow-lg;
   }
 
   .text-glow {
