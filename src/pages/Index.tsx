@@ -10,41 +10,14 @@ import WorkflowSection from "@/components/WorkflowSection";
 import FaqSection from "@/components/FaqSection";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
-import { useEffect } from "react";
 
 const Index = () => {
-  useEffect(() => {
-    // Update document title when component mounts
-    document.title = "ORCHESITY - AI Orchestration Platform";
-    
-    // Add structured data for homepage
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.innerHTML = JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      'url': 'https://orchesity.com/',
-      'name': 'ORCHESITY',
-      'description': 'AI Orchestration Platform that streamlines your AI operations',
-      'potentialAction': {
-        '@type': 'SearchAction',
-        'target': 'https://orchesity.com/search?q={search_term_string}',
-        'query-input': 'required name=search_term_string'
-      }
-    });
-    document.head.appendChild(script);
-    
-    return () => {
-      // Clean up
-      document.head.removeChild(script);
-    };
-  }, []);
-
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-black via-[#0a0a14] to-[#0a0a1a] relative overflow-hidden">
       <SEOHead 
         title="ORCHESITY - AI Orchestration Platform"
-        description="Streamline your AI operations with ORCHESITY's powerful orchestration platform"
+        description="Streamline your AI operations with ORCHESITY's powerful orchestration platform. Integrate, automate, and manage AI services with ease."
+        keywords="AI orchestration, AI automation, AI integration, AI platform, artificial intelligence, machine learning, workflow automation"
       />
       
       {/* Gradient orbs for enhanced background effect */}
