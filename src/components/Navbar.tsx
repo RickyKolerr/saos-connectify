@@ -2,40 +2,49 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-background backdrop-blur-sm py-4 sticky top-0 z-50 shadow-sm border-b border-border">
+    <nav className="bg-black/90 backdrop-blur-sm py-4 sticky top-0 z-50 shadow-md border-b border-white/10">
       <div className="container flex justify-between items-center">
         <div className="flex flex-col items-start">
-          <a href="/" className="text-2xl font-bold text-gradient relative group">
+          <Link to="/" className="text-2xl font-bold text-gradient relative group">
             ORCHESITY
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black/60 transition-all duration-300 group-hover:w-full"></span>
-          </a>
-          <span className="text-xs text-muted-foreground">Powered by Kolerr Technologies</span>
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white/60 transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+          <span className="text-xs text-white/50">Powered by Kolerr Technologies</span>
         </div>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">
-          <a href="/features" className="text-sm font-medium text-foreground/80 hover:text-gradient transition-colors duration-300 relative group">
+          <Link to="/features" className="text-sm font-medium text-white/80 hover:text-gradient transition-colors duration-300 relative group">
             Features
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black/60 transition-all duration-300 group-hover:w-full"></span>
-          </a>
-          <a href="/how-it-works" className="text-sm font-medium text-foreground/80 hover:text-gradient transition-colors duration-300 relative group">
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white/60 transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+          <Link to="/how-it-works" className="text-sm font-medium text-white/80 hover:text-gradient transition-colors duration-300 relative group">
             How It Works
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black/60 transition-all duration-300 group-hover:w-full"></span>
-          </a>
-          <a href="/benefits" className="text-sm font-medium text-foreground/80 hover:text-gradient transition-colors duration-300 relative group">
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white/60 transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+          <Link to="/benefits" className="text-sm font-medium text-white/80 hover:text-gradient transition-colors duration-300 relative group">
             Benefits
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black/60 transition-all duration-300 group-hover:w-full"></span>
-          </a>
-          <a href="/pricing" className="text-sm font-medium text-foreground/80 hover:text-gradient transition-colors duration-300 relative group">
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white/60 transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+          <Link to="/pricing" className="text-sm font-medium text-white/80 hover:text-gradient transition-colors duration-300 relative group">
             Pricing
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black/60 transition-all duration-300 group-hover:w-full"></span>
-          </a>
-          <Button variant="default" size="sm" className="bg-black text-white hover:bg-black/90 hover:shadow-[0_0_15px_rgba(0,0,0,0.2)] ml-2 transition-all duration-300">
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white/60 transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+          <Link to="/documentation" className="text-sm font-medium text-white/80 hover:text-gradient transition-colors duration-300 relative group">
+            Docs
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white/60 transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+          <Link to="/contact" className="text-sm font-medium text-white/80 hover:text-gradient transition-colors duration-300 relative group">
+            Contact
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white/60 transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+          <Button variant="default" size="sm" className="bg-white text-black hover:bg-white/90 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] ml-2 transition-all duration-300">
             Get Started
           </Button>
         </div>
@@ -47,7 +56,7 @@ const Navbar = () => {
             variant="ghost"
             size="icon"
             aria-label="Menu"
-            className="text-foreground hover:text-black/80 transition-colors duration-300"
+            className="text-white hover:text-white/80 transition-colors duration-300"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </Button>
@@ -56,38 +65,52 @@ const Navbar = () => {
 
       {/* Mobile Navigation Menu */}
       {isMenuOpen && (
-        <div className="md:hidden absolute top-16 inset-x-0 bg-background/95 backdrop-blur-md shadow-md z-50 py-4 border-b border-border/50">
+        <div className="md:hidden absolute top-16 inset-x-0 bg-black/95 backdrop-blur-md shadow-md z-50 py-4 border-b border-white/10">
           <div className="container flex flex-col space-y-4">
-            <a 
-              href="/features" 
-              className="text-sm font-medium text-foreground/80 hover:text-gradient p-2 transition-colors duration-300"
+            <Link 
+              to="/features" 
+              className="text-sm font-medium text-white/80 hover:text-gradient p-2 transition-colors duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
               Features
-            </a>
-            <a 
-              href="/how-it-works" 
-              className="text-sm font-medium text-foreground/80 hover:text-gradient p-2 transition-colors duration-300"
+            </Link>
+            <Link 
+              to="/how-it-works" 
+              className="text-sm font-medium text-white/80 hover:text-gradient p-2 transition-colors duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
               How It Works
-            </a>
-            <a 
-              href="/benefits" 
-              className="text-sm font-medium text-foreground/80 hover:text-gradient p-2 transition-colors duration-300"
+            </Link>
+            <Link 
+              to="/benefits" 
+              className="text-sm font-medium text-white/80 hover:text-gradient p-2 transition-colors duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
               Benefits
-            </a>
-            <a 
-              href="/pricing" 
-              className="text-sm font-medium text-foreground/80 hover:text-gradient p-2 transition-colors duration-300"
+            </Link>
+            <Link 
+              to="/pricing" 
+              className="text-sm font-medium text-white/80 hover:text-gradient p-2 transition-colors duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
               Pricing
-            </a>
+            </Link>
+            <Link 
+              to="/documentation" 
+              className="text-sm font-medium text-white/80 hover:text-gradient p-2 transition-colors duration-300"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Documentation
+            </Link>
+            <Link 
+              to="/contact" 
+              className="text-sm font-medium text-white/80 hover:text-gradient p-2 transition-colors duration-300"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Contact
+            </Link>
             <Button 
-              className="bg-black text-white hover:bg-black/90 w-full transition-all duration-300"
+              className="bg-white text-black hover:bg-white/90 w-full transition-all duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
               Get Started
