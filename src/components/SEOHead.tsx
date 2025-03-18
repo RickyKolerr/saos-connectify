@@ -26,6 +26,7 @@ const SEOHead = ({
   const { pathname } = useLocation();
   const siteUrl = "https://orchesity.com";
   const canonical = pathname ? `${siteUrl}${pathname}` : siteUrl;
+  const faviconUrl = "/lovable-uploads/0728b258-cfb3-4596-b9b2-6aeea7cb0115.png";
 
   return (
     <Helmet>
@@ -35,6 +36,9 @@ const SEOHead = ({
       <meta name="author" content={author} />
       <meta name="robots" content="index, follow" />
       <link rel="canonical" href={canonical} />
+      <link rel="icon" type="image/png" href={faviconUrl} />
+      <link rel="apple-touch-icon" href={faviconUrl} />
+      <link rel="shortcut icon" href={faviconUrl} />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={article ? "article" : "website"} />
@@ -82,7 +86,7 @@ const SEOHead = ({
               "name": "ORCHESITY",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://orchesity.com/lovable-uploads/f8bf36fe-cc6d-44ce-9063-bf0eedd072cb.png"
+                "url": faviconUrl
               }
             }
           } : {
