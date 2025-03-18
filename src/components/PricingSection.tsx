@@ -1,7 +1,91 @@
 
 import { Check } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { Switch } from "@/components/ui/switch";
+import { Card } from "@/components/ui/card";
+
+type PricingPlan = {
+  id: string;
+  name: string;
+  monthlyPrice: number;
+  description: string;
+  features: string[];
+  primary?: boolean;
+  delay: string;
+  cta: string;
+};
+
+const pricingPlans: PricingPlan[] = [
+  {
+    id: "starter",
+    name: "Starter",
+    monthlyPrice: 99,
+    description: "Perfect for startups and small projects",
+    features: [
+      "10,000 API calls per month",
+      "3 AI providers",
+      "Basic analytics",
+      "Community support",
+      "Standard SLA"
+    ],
+    delay: "0.1s",
+    cta: "Get Started"
+  },
+  {
+    id: "standard",
+    name: "Standard",
+    monthlyPrice: 199,
+    description: "Ideal for growing teams with moderate AI needs",
+    features: [
+      "25,000 API calls per month",
+      "5 AI providers",
+      "Advanced analytics",
+      "Priority email support",
+      "99.5% uptime SLA",
+      "Custom API keys"
+    ],
+    delay: "0.15s",
+    cta: "Try Free for 14 Days"
+  },
+  {
+    id: "professional",
+    name: "Professional",
+    monthlyPrice: 299,
+    description: "For growing companies with serious AI needs",
+    features: [
+      "50,000 API calls per month",
+      "All AI providers",
+      "Advanced analytics",
+      "Email + chat support",
+      "99.9% uptime SLA",
+      "Custom domain",
+      "Team collaboration tools"
+    ],
+    primary: true,
+    delay: "0.2s",
+    cta: "Get Started"
+  },
+  {
+    id: "enterprise",
+    name: "Enterprise",
+    monthlyPrice: 0,
+    description: "For organizations needing complete control",
+    features: [
+      "Unlimited API calls",
+      "On-premise deployment",
+      "Private cloud option",
+      "Dedicated support team",
+      "Custom integrations",
+      "SSO & advanced security",
+      "SLA guarantees",
+      "Dedicated account manager"
+    ],
+    delay: "0.3s",
+    cta: "Contact Sales"
+  }
+];
 
 const PricingTier = ({ 
   name, 
@@ -9,16 +93,18 @@ const PricingTier = ({
   description, 
   features, 
   primary = false,
-  delay
+  delay,
+  cta
 }: { 
   name: string; 
-  price: string; 
+  price: string | React.ReactNode; 
   description: string; 
   features: string[];
   primary?: boolean;
   delay: string;
+  cta: string;
 }) => (
-  <div 
+  <Card 
     className={`rounded-xl p-6 ${primary ? 'border-2 border-white/50 shadow-lg' : 'border border-border'} 
     relative flex flex-col h-full ${primary ? 'bg-black/60' : 'glass-card'} opacity-0 animate-fade-in
     hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all duration-500 transform hover:scale-[1.02]`}
@@ -34,8 +120,13 @@ const PricingTier = ({
     <div className="mb-4">
       <h3 className="text-lg font-semibold text-foreground">{name}</h3>
       <div className="mt-4 mb-2">
-        <span className="text-3xl font-bold text-gradient">{price}</span>
-        {price !== 'Custom' && <span className="text-muted-foreground">/month</span>}
+        {typeof price === 'string' ? (
+          <>
+            <span className="text-3xl font-bold text-gradient">{price}</span>
+          </>
+        ) : (
+          price
+        )}
       </div>
       <p className="text-sm text-muted-foreground">{description}</p>
     </div>
@@ -57,13 +148,26 @@ const PricingTier = ({
           ? 'bg-white hover:bg-white/90 hover:shadow-[0_0_15px_rgba(255,255,255,0.3)] text-black' 
           : 'bg-background/50 hover:bg-background/70 text-foreground border border-border hover:border-white/30'} transition-all duration-300`}
       >
-        {primary ? 'Get Started' : 'Learn More'}
+        {cta}
       </Button>
     </div>
-  </div>
+  </Card>
 );
 
 const PricingSection = () => {
+  const [isAnnual, setIsAnnual] = useState(false);
+  const annualDiscount = 0.15; // 15% discount for annual billing
+
+  const formatPrice = (monthlyPrice: number) => {
+    if (monthlyPrice === 0) return "Custom";
+    
+    const price = isAnnual 
+      ? monthlyPrice * (1 - annualDiscount) 
+      : monthlyPrice;
+      
+    return `$${Math.round(price)}`;
+  };
+
   return (
     <section id="pricing" className="py-16 bg-secondary/20">
       <div className="container px-4 md:px-6">
@@ -77,53 +181,47 @@ const PricingSection = () => {
           <p className="max-w-[700px] text-muted-foreground md:text-xl">
             Choose the plan that's right for you, with no surprises or hidden fees.
           </p>
+          
+          <div className="flex items-center justify-center space-x-4 mt-6 opacity-0 animate-fade-in" style={{ animationDelay: "0.1s" }}>
+            <span className={`text-sm ${!isAnnual ? 'text-white' : 'text-muted-foreground'}`}>Monthly</span>
+            <div className="flex items-center">
+              <Switch
+                checked={isAnnual}
+                onCheckedChange={setIsAnnual}
+                className="data-[state=checked]:bg-white/90"
+              />
+            </div>
+            <div className="flex items-center">
+              <span className={`text-sm ${isAnnual ? 'text-white' : 'text-muted-foreground'}`}>Annual</span>
+              <span className="ml-2 inline-block rounded-full bg-white/15 px-2.5 py-0.5 text-xs font-medium text-white">
+                Save 15%
+              </span>
+            </div>
+          </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          <PricingTier
-            name="Starter"
-            price="$99"
-            description="Perfect for startups and small projects"
-            features={[
-              "10,000 API calls per month",
-              "3 AI providers",
-              "Basic analytics",
-              "Community support",
-              "Standard SLA"
-            ]}
-            delay="0.1s"
-          />
-          
-          <PricingTier
-            name="Professional"
-            price="$299"
-            description="For growing companies with serious AI needs"
-            features={[
-              "50,000 API calls per month",
-              "All AI providers",
-              "Advanced analytics",
-              "Email + chat support",
-              "99.9% uptime SLA",
-              "Custom domain"
-            ]}
-            primary={true}
-            delay="0.2s"
-          />
-          
-          <PricingTier
-            name="Enterprise"
-            price="Custom"
-            description="For organizations needing complete control"
-            features={[
-              "Unlimited API calls",
-              "On-premise deployment",
-              "Private cloud option",
-              "Dedicated support team",
-              "Custom integrations",
-              "SSO & advanced security"
-            ]}
-            delay="0.3s"
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {pricingPlans.map((plan) => (
+            <PricingTier
+              key={plan.id}
+              name={plan.name}
+              price={
+                plan.monthlyPrice === 0 ? (
+                  <span className="text-3xl font-bold text-gradient">Custom</span>
+                ) : (
+                  <div>
+                    <span className="text-3xl font-bold text-gradient">{formatPrice(plan.monthlyPrice)}</span>
+                    <span className="text-muted-foreground ml-1">{isAnnual ? "/mo, billed annually" : "/month"}</span>
+                  </div>
+                )
+              }
+              description={plan.description}
+              features={plan.features}
+              primary={plan.primary}
+              delay={plan.delay}
+              cta={plan.cta}
+            />
+          ))}
         </div>
         
         <div className="mt-12 max-w-3xl mx-auto text-center opacity-0 animate-fade-in" style={{ animationDelay: "0.4s" }}>
