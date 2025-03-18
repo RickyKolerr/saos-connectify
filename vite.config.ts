@@ -6,14 +6,17 @@ import { componentTagger } from "lovable-tagger";
 import mkcert from "vite-plugin-mkcert";
 import { VitePWA } from "vite-plugin-pwa";
 import imagemin from "vite-plugin-imagemin";
+import type { ConfigEnv, UserConfig } from "vite";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(({ mode }: ConfigEnv): UserConfig => ({
   server: {
     host: "::",
     port: 8080,
     strictPort: true,
-    https: true, // Enable HTTPS in development with mkcert
+    https: {
+      // Use mkcert to generate valid certificates
+    },
     // Ensure proper SPA fallback
     middlewareMode: false
   },
