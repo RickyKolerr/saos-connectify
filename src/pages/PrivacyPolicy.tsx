@@ -55,8 +55,8 @@ const PrivacyPolicy = () => {
         <section className="py-16 md:py-24">
           <div className="container px-4 md:px-6">
             <div className="max-w-3xl mx-auto text-center mb-12">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">Secure AI Orchestration</h1>
-              <p className="text-xl text-white/70">Enterprise-grade security and privacy built into every layer</p>
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">Secure AI Orchestration</h1>
+              <p className="text-xl text-white">Enterprise-grade security and privacy built into every layer</p>
             </div>
             
             {/* Navigation Cards */}
@@ -68,7 +68,7 @@ const PrivacyPolicy = () => {
                   className={`flex flex-col items-center justify-center h-24 transition-all ${
                     activeSection === section.id 
                       ? "bg-white/10 text-white border-white/20" 
-                      : "bg-black/40 text-white/70 hover:text-white border-white/10"
+                      : "bg-black/40 text-white hover:text-white border-white/10"
                   }`}
                   onClick={() => scrollToSection(section.id)}
                 >
@@ -85,11 +85,11 @@ const PrivacyPolicy = () => {
                   <Card className="bg-transparent border-0 shadow-none">
                     <CardHeader className="pb-2">
                       <div className="flex items-start">
-                        <Server className="h-8 w-8 text-indigo-400 mr-3 mt-1" />
+                        <Server className="h-8 w-8 text-white mr-3 mt-1" />
                         <CardTitle className="text-2xl font-semibold">Platform Overview</CardTitle>
                       </div>
                     </CardHeader>
-                    <CardContent className="pt-2 text-white/80">
+                    <CardContent className="pt-2 text-white">
                       <p className="leading-relaxed mb-4">
                         ORCHESITY provides a comprehensive AI orchestration platform designed for 
                         enterprises that need to manage multiple AI systems securely and efficiently.
@@ -121,36 +121,36 @@ const PrivacyPolicy = () => {
                   <Card className="bg-transparent border-0 shadow-none">
                     <CardHeader className="pb-2">
                       <div className="flex items-start">
-                        <Shield className="h-8 w-8 text-indigo-400 mr-3 mt-1" />
+                        <Shield className="h-8 w-8 text-white mr-3 mt-1" />
                         <CardTitle className="text-2xl font-semibold">Security Features</CardTitle>
                       </div>
                     </CardHeader>
-                    <CardContent className="pt-2 text-white/80">
+                    <CardContent className="pt-2 text-white">
                       <p className="leading-relaxed mb-4">
                         We have implemented multiple layers of security to protect your data and AI operations:
                       </p>
                       <ul className="space-y-3">
                         <li className="ml-6 relative">
-                          <div className="absolute -left-6 top-1.5 w-3 h-3 rounded-full bg-indigo-500"></div>
+                          <div className="absolute -left-6 top-1.5 w-3 h-3 rounded-full bg-white"></div>
                           <strong>End-to-End Encryption:</strong> All data in transit and at rest is encrypted using AES-256.
                         </li>
                         <li className="ml-6 relative">
-                          <div className="absolute -left-6 top-1.5 w-3 h-3 rounded-full bg-indigo-500"></div>
+                          <div className="absolute -left-6 top-1.5 w-3 h-3 rounded-full bg-white"></div>
                           <strong>Multi-Factor Authentication:</strong> Enhanced access controls for all user accounts.
                         </li>
                         <li className="ml-6 relative">
-                          <div className="absolute -left-6 top-1.5 w-3 h-3 rounded-full bg-indigo-500"></div>
+                          <div className="absolute -left-6 top-1.5 w-3 h-3 rounded-full bg-white"></div>
                           <strong>Role-Based Access Control:</strong> Granular permissions for different user roles.
                         </li>
                         <li className="ml-6 relative">
-                          <div className="absolute -left-6 top-1.5 w-3 h-3 rounded-full bg-indigo-500"></div>
+                          <div className="absolute -left-6 top-1.5 w-3 h-3 rounded-full bg-white"></div>
                           <strong>Audit Logging:</strong> Comprehensive logs of all system access and changes.
                         </li>
                       </ul>
                       
-                      <Alert className="mt-6 bg-indigo-950/30 border-indigo-500/30">
-                        <AlertTitle className="text-indigo-300">Security Certification</AlertTitle>
-                        <AlertDescription className="text-white/70">
+                      <Alert className="mt-6 bg-white/5 border-white/30">
+                        <AlertTitle className="text-white">Security Certification</AlertTitle>
+                        <AlertDescription className="text-white">
                           ORCHESITY is SOC 2 Type II certified, demonstrating our commitment to maintaining the highest security standards.
                         </AlertDescription>
                       </Alert>
@@ -163,29 +163,29 @@ const PrivacyPolicy = () => {
                   <Card className="bg-transparent border-0 shadow-none">
                     <CardHeader className="pb-2">
                       <div className="flex items-start">
-                        <Database className="h-8 w-8 text-indigo-400 mr-3 mt-1" />
+                        <Database className="h-8 w-8 text-white mr-3 mt-1" />
                         <CardTitle className="text-2xl font-semibold">Data Handling</CardTitle>
                       </div>
                     </CardHeader>
-                    <CardContent className="pt-2 text-white/80">
+                    <CardContent className="pt-2 text-white">
                       <p className="leading-relaxed mb-4">
                         Our platform handles various types of data while maintaining strict privacy controls:
                       </p>
-                      <ul className="space-y-2 text-white/80">
+                      <ul className="space-y-2 text-white">
                         <li className="flex items-start">
-                          <span className="inline-block w-2 h-2 rounded-full bg-purple-500 mt-2 mr-2"></span>
+                          <span className="inline-block w-2 h-2 rounded-full bg-white mt-2 mr-2"></span>
                           <span><strong>Identity Data:</strong> Limited personal identifiers used only for authentication</span>
                         </li>
                         <li className="flex items-start">
-                          <span className="inline-block w-2 h-2 rounded-full bg-purple-500 mt-2 mr-2"></span>
+                          <span className="inline-block w-2 h-2 rounded-full bg-white mt-2 mr-2"></span>
                           <span><strong>Usage Data:</strong> Telemetry to improve platform performance and user experience</span>
                         </li>
                         <li className="flex items-start">
-                          <span className="inline-block w-2 h-2 rounded-full bg-purple-500 mt-2 mr-2"></span>
+                          <span className="inline-block w-2 h-2 rounded-full bg-white mt-2 mr-2"></span>
                           <span><strong>Content Data:</strong> Your AI inputs and outputs, processed according to your configuration</span>
                         </li>
                         <li className="flex items-start">
-                          <span className="inline-block w-2 h-2 rounded-full bg-purple-500 mt-2 mr-2"></span>
+                          <span className="inline-block w-2 h-2 rounded-full bg-white mt-2 mr-2"></span>
                           <span><strong>Configuration Data:</strong> Your settings for AI services and workflows</span>
                         </li>
                       </ul>
@@ -194,20 +194,20 @@ const PrivacyPolicy = () => {
                         <h3 className="font-semibold mb-3 text-white">Data Governance Features</h3>
                         <div className="grid md:grid-cols-2 gap-4">
                           <div className="bg-black/30 p-3 rounded-md">
-                            <h4 className="text-sm font-medium text-indigo-300 mb-1">Data Lineage</h4>
-                            <p className="text-xs text-white/70">Track the origin and transformation of all data</p>
+                            <h4 className="text-sm font-medium text-white mb-1">Data Lineage</h4>
+                            <p className="text-xs text-white">Track the origin and transformation of all data</p>
                           </div>
                           <div className="bg-black/30 p-3 rounded-md">
-                            <h4 className="text-sm font-medium text-indigo-300 mb-1">Data Classification</h4>
-                            <p className="text-xs text-white/70">Automatically categorize data by sensitivity level</p>
+                            <h4 className="text-sm font-medium text-white mb-1">Data Classification</h4>
+                            <p className="text-xs text-white">Automatically categorize data by sensitivity level</p>
                           </div>
                           <div className="bg-black/30 p-3 rounded-md">
-                            <h4 className="text-sm font-medium text-indigo-300 mb-1">Retention Controls</h4>
-                            <p className="text-xs text-white/70">Configure custom data retention policies</p>
+                            <h4 className="text-sm font-medium text-white mb-1">Retention Controls</h4>
+                            <p className="text-xs text-white">Configure custom data retention policies</p>
                           </div>
                           <div className="bg-black/30 p-3 rounded-md">
-                            <h4 className="text-sm font-medium text-indigo-300 mb-1">Data Minimization</h4>
-                            <p className="text-xs text-white/70">Process only necessary data for each operation</p>
+                            <h4 className="text-sm font-medium text-white mb-1">Data Minimization</h4>
+                            <p className="text-xs text-white">Process only necessary data for each operation</p>
                           </div>
                         </div>
                       </div>
@@ -220,11 +220,11 @@ const PrivacyPolicy = () => {
                   <Card className="bg-transparent border-0 shadow-none">
                     <CardHeader className="pb-2">
                       <div className="flex items-start">
-                        <Eye className="h-8 w-8 text-indigo-400 mr-3 mt-1" />
+                        <Eye className="h-8 w-8 text-white mr-3 mt-1" />
                         <CardTitle className="text-2xl font-semibold">Privacy Controls</CardTitle>
                       </div>
                     </CardHeader>
-                    <CardContent className="pt-2 text-white/80">
+                    <CardContent className="pt-2 text-white">
                       <p className="leading-relaxed">
                         ORCHESITY gives you complete control over your data privacy with these features:
                       </p>
@@ -264,11 +264,11 @@ const PrivacyPolicy = () => {
                   <Card className="bg-transparent border-0 shadow-none">
                     <CardHeader className="pb-2">
                       <div className="flex items-start">
-                        <FileText className="h-8 w-8 text-indigo-400 mr-3 mt-1" />
+                        <FileText className="h-8 w-8 text-white mr-3 mt-1" />
                         <CardTitle className="text-2xl font-semibold">Compliance</CardTitle>
                       </div>
                     </CardHeader>
-                    <CardContent className="pt-2 text-white/80">
+                    <CardContent className="pt-2 text-white">
                       <p className="leading-relaxed mb-4">
                         ORCHESITY is designed to help you meet regulatory requirements across various frameworks:
                       </p>
@@ -276,25 +276,25 @@ const PrivacyPolicy = () => {
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
                         <div className="bg-white/5 p-4 rounded-lg border border-white/10">
                           <div className="font-bold text-lg">GDPR</div>
-                          <div className="text-xs text-white/60">European Union</div>
+                          <div className="text-xs text-white">European Union</div>
                         </div>
                         <div className="bg-white/5 p-4 rounded-lg border border-white/10">
                           <div className="font-bold text-lg">CCPA/CPRA</div>
-                          <div className="text-xs text-white/60">California, USA</div>
+                          <div className="text-xs text-white">California, USA</div>
                         </div>
                         <div className="bg-white/5 p-4 rounded-lg border border-white/10">
                           <div className="font-bold text-lg">HIPAA</div>
-                          <div className="text-xs text-white/60">Healthcare</div>
+                          <div className="text-xs text-white">Healthcare</div>
                         </div>
                         <div className="bg-white/5 p-4 rounded-lg border border-white/10">
                           <div className="font-bold text-lg">LGPD</div>
-                          <div className="text-xs text-white/60">Brazil</div>
+                          <div className="text-xs text-white">Brazil</div>
                         </div>
                       </div>
                       
-                      <Alert className="mt-6 bg-indigo-950/30 border-indigo-500/30">
-                        <AlertTitle className="text-indigo-300">Compliance Documentation</AlertTitle>
-                        <AlertDescription className="text-white/70">
+                      <Alert className="mt-6 bg-white/5 border-white/30">
+                        <AlertTitle className="text-white">Compliance Documentation</AlertTitle>
+                        <AlertDescription className="text-white">
                           We provide detailed compliance documentation and data processing agreements to support your regulatory requirements.
                         </AlertDescription>
                       </Alert>
@@ -307,11 +307,11 @@ const PrivacyPolicy = () => {
                   <Card className="bg-transparent border-0 shadow-none">
                     <CardHeader className="pb-2">
                       <div className="flex items-start">
-                        <UserCheck className="h-8 w-8 text-indigo-400 mr-3 mt-1" />
+                        <UserCheck className="h-8 w-8 text-white mr-3 mt-1" />
                         <CardTitle className="text-2xl font-semibold">User Rights</CardTitle>
                       </div>
                     </CardHeader>
-                    <CardContent className="pt-2 text-white/80">
+                    <CardContent className="pt-2 text-white">
                       <p className="leading-relaxed mb-4">
                         We provide tools to help you respect and manage user rights related to personal data:
                       </p>
@@ -351,34 +351,34 @@ const PrivacyPolicy = () => {
                   <Card className="bg-transparent border-0 shadow-none">
                     <CardHeader className="pb-2">
                       <div className="flex items-start">
-                        <Users className="h-8 w-8 text-indigo-400 mr-3 mt-1" />
+                        <Users className="h-8 w-8 text-white mr-3 mt-1" />
                         <CardTitle className="text-2xl font-semibold">Enterprise Solutions</CardTitle>
                       </div>
                     </CardHeader>
-                    <CardContent className="pt-2 text-white/80">
+                    <CardContent className="pt-2 text-white">
                       <p className="leading-relaxed mb-4">
                         For enterprise customers, we offer enhanced security and compliance features:
                       </p>
                       
                       <div className="mt-4 space-y-4">
-                        <div className="bg-gradient-to-r from-black/40 to-indigo-950/20 p-5 rounded-lg border border-indigo-500/20">
-                          <h3 className="font-semibold text-indigo-300 mb-2">Private Instances</h3>
+                        <div className="bg-gradient-to-r from-black/40 to-white/5 p-5 rounded-lg border border-white/20">
+                          <h3 className="font-semibold text-white mb-2">Private Instances</h3>
                           <p className="text-sm">Dedicated infrastructure isolated from other customers, with enhanced security monitoring and controls.</p>
                         </div>
                         
-                        <div className="bg-gradient-to-r from-black/40 to-indigo-950/20 p-5 rounded-lg border border-indigo-500/20">
-                          <h3 className="font-semibold text-indigo-300 mb-2">Custom Security Integrations</h3>
+                        <div className="bg-gradient-to-r from-black/40 to-white/5 p-5 rounded-lg border border-white/20">
+                          <h3 className="font-semibold text-white mb-2">Custom Security Integrations</h3>
                           <p className="text-sm">Integration with your existing security tools, including SIEM systems, identity providers, and key management solutions.</p>
                         </div>
                         
-                        <div className="bg-gradient-to-r from-black/40 to-indigo-950/20 p-5 rounded-lg border border-indigo-500/20">
-                          <h3 className="font-semibold text-indigo-300 mb-2">Compliance Packages</h3>
+                        <div className="bg-gradient-to-r from-black/40 to-white/5 p-5 rounded-lg border border-white/20">
+                          <h3 className="font-semibold text-white mb-2">Compliance Packages</h3>
                           <p className="text-sm">Specialized configurations and documentation for regulated industries including finance, healthcare, and government.</p>
                         </div>
                       </div>
                       
                       <div className="flex justify-center mt-8">
-                        <Button className="bg-indigo-600 hover:bg-indigo-700 text-white">
+                        <Button className="bg-white/20 hover:bg-white/30 text-white">
                           <Lock className="h-4 w-4 mr-2" />
                           Contact Enterprise Team
                         </Button>
