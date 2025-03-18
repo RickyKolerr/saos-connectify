@@ -10,6 +10,9 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    // Add fallback for SPA routing
+    strictPort: true,
+    historyApiFallback: true,
   },
   plugins: [
     react(),
@@ -26,6 +29,24 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+    },
+  },
+  // Ensure that the build generates a proper SPA
+  build: {
+    outDir: "dist",
+    assetsDir: "assets",
+    emptyOutDir: true,
+    sourcemap: mode !== "production",
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: [
+            'react',
+            'react-dom',
+            'react-router-dom',
+          ],
+        },
+      },
     },
   },
 }));
