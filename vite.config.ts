@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
     strictPort: true,
-    https: true, // Enable HTTPS in development
+    https: true, // Enable HTTPS in development with mkcert
     // Ensure proper SPA fallback
     middlewareMode: false
   },
