@@ -15,8 +15,8 @@ interface SEOHeadProps {
 
 const SEOHead = ({
   title = "ORCHESITY - AI Orchestration Platform",
-  description = "ORCHESITY helps you orchestrate and streamline your AI operations with powerful integration tools",
-  image = "https://orchesity.com/lovable-uploads/fd113699-d245-43bc-9586-f66ba7ef4268.png",
+  description = "We are introducing Orchesity - A Smart AI Orchestration System Powered by Kolerr Technologies & KravenB.",
+  image = "/lovable-uploads/7a969d60-8b7e-430a-a955-dcf819a3db6f.png",
   article = false,
   keywords = "AI orchestration, AI operations, artificial intelligence, orchestration platform, AI integration, AI tools",
   author = "ORCHESITY",
