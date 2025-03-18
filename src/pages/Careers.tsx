@@ -2,7 +2,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import SEOHead from "@/components/SEOHead";
 
 const JobCard = ({ title, department, location, type }: { title: string; department: string; location: string; type: string }) => (
   <div className="border border-white/10 rounded-lg p-6 bg-white/5 hover:bg-white/10 transition-all duration-300 group">
@@ -36,11 +35,6 @@ const Careers = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-black text-white">
-      <SEOHead 
-        title="Careers at ORCHESITY - Join Our Team"
-        description="Join ORCHESITY and help us revolutionize AI orchestration. Explore current job openings and learn about our company culture and benefits."
-        keywords="ORCHESITY careers, AI jobs, tech careers, remote jobs, artificial intelligence careers, tech company jobs"
-      />
       <Navbar />
       <main className="flex-grow">
         <section className="py-16 md:py-24">
