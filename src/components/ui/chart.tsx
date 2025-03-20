@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import * as RechartsPrimitive from "recharts"
 
@@ -353,6 +354,247 @@ function getPayloadConfigFromPayload(
     : config[key as keyof typeof config]
 }
 
+// Add the missing AreaChart component
+interface AreaChartProps {
+  data: any[];
+  index: string;
+  categories: string[];
+  colors?: string[];
+  yAxisWidth?: number;
+  showLegend?: boolean;
+  showXAxis?: boolean;
+  showYAxis?: boolean;
+  showGrid?: boolean;
+  className?: string;
+}
+
+const AreaChart = ({
+  data,
+  index,
+  categories,
+  colors = ["#0ea5e9"],
+  yAxisWidth = 30,
+  showLegend = false,
+  showXAxis = true,
+  showYAxis = true,
+  showGrid = true,
+  className,
+  ...props
+}: AreaChartProps) => {
+  const chartConfig = React.useMemo(() => {
+    return categories.reduce<ChartConfig>((acc, category, i) => {
+      acc[category] = {
+        color: colors[i % colors.length],
+      };
+      return acc;
+    }, {});
+  }, [categories, colors]);
+
+  return (
+    <ChartContainer className={className} config={chartConfig} {...props}>
+      <RechartsPrimitive.AreaChart data={data}>
+        {showGrid && (
+          <RechartsPrimitive.CartesianGrid strokeDasharray="3 3" vertical={false} />
+        )}
+        {showXAxis && (
+          <RechartsPrimitive.XAxis
+            dataKey={index}
+            tickLine={false}
+            axisLine={false}
+            padding={{ left: 10, right: 10 }}
+            tick={{ fill: "currentColor", fontSize: 12 }}
+          />
+        )}
+        {showYAxis && (
+          <RechartsPrimitive.YAxis
+            width={yAxisWidth}
+            tickLine={false}
+            axisLine={false}
+            tick={{ fill: "currentColor", fontSize: 12 }}
+          />
+        )}
+        <RechartsPrimitive.Tooltip
+          content={({ active, payload }) => {
+            if (!active || !payload?.length) return null;
+            return (
+              <div className="rounded-lg border bg-background p-2 shadow-sm">
+                <div className="grid grid-cols-2 gap-2">
+                  {payload.map((entry) => (
+                    <div key={entry.name} className="flex flex-col">
+                      <span className="text-[0.70rem] uppercase text-muted-foreground">
+                        {entry.name}
+                      </span>
+                      <span className="font-bold">
+                        {entry.value}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          }}
+        />
+        {showLegend && (
+          <RechartsPrimitive.Legend
+            verticalAlign="top"
+            align="right"
+            wrapperStyle={{ paddingBottom: 20 }}
+            content={({ payload }) => {
+              if (!payload?.length) return null;
+              return (
+                <div className="flex items-center justify-end gap-4">
+                  {payload.map((entry, i) => (
+                    <div
+                      key={`item-${i}`}
+                      className="flex items-center gap-1 text-sm text-muted-foreground"
+                    >
+                      <div
+                        className="h-3 w-3 rounded-full"
+                        style={{ backgroundColor: entry.color }}
+                      />
+                      <span>{entry.value}</span>
+                    </div>
+                  ))}
+                </div>
+              );
+            }}
+          />
+        )}
+        {categories.map((category, i) => (
+          <RechartsPrimitive.Area
+            key={category}
+            type="monotone"
+            dataKey={category}
+            stackId={1}
+            fill={colors[i % colors.length]}
+            stroke={colors[i % colors.length]}
+            fillOpacity={0.1}
+          />
+        ))}
+      </RechartsPrimitive.AreaChart>
+    </ChartContainer>
+  );
+};
+
+// Add the missing BarChart component
+interface BarChartProps {
+  data: any[];
+  index: string;
+  categories: string[];
+  colors?: string[];
+  yAxisWidth?: number;
+  showLegend?: boolean;
+  showXAxis?: boolean;
+  showYAxis?: boolean;
+  showGrid?: boolean;
+  className?: string;
+}
+
+const BarChart = ({
+  data,
+  index,
+  categories,
+  colors = ["#0ea5e9"],
+  yAxisWidth = 30,
+  showLegend = false,
+  showXAxis = true,
+  showYAxis = true,
+  showGrid = true,
+  className,
+  ...props
+}: BarChartProps) => {
+  const chartConfig = React.useMemo(() => {
+    return categories.reduce<ChartConfig>((acc, category, i) => {
+      acc[category] = {
+        color: colors[i % colors.length],
+      };
+      return acc;
+    }, {});
+  }, [categories, colors]);
+
+  return (
+    <ChartContainer className={className} config={chartConfig} {...props}>
+      <RechartsPrimitive.BarChart data={data}>
+        {showGrid && (
+          <RechartsPrimitive.CartesianGrid strokeDasharray="3 3" vertical={false} />
+        )}
+        {showXAxis && (
+          <RechartsPrimitive.XAxis
+            dataKey={index}
+            tickLine={false}
+            axisLine={false}
+            padding={{ left: 10, right: 10 }}
+            tick={{ fill: "currentColor", fontSize: 12 }}
+          />
+        )}
+        {showYAxis && (
+          <RechartsPrimitive.YAxis
+            width={yAxisWidth}
+            tickLine={false}
+            axisLine={false}
+            tick={{ fill: "currentColor", fontSize: 12 }}
+          />
+        )}
+        <RechartsPrimitive.Tooltip
+          content={({ active, payload }) => {
+            if (!active || !payload?.length) return null;
+            return (
+              <div className="rounded-lg border bg-background p-2 shadow-sm">
+                <div className="grid grid-cols-2 gap-2">
+                  {payload.map((entry) => (
+                    <div key={entry.name} className="flex flex-col">
+                      <span className="text-[0.70rem] uppercase text-muted-foreground">
+                        {entry.name}
+                      </span>
+                      <span className="font-bold">
+                        {entry.value}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          }}
+        />
+        {showLegend && (
+          <RechartsPrimitive.Legend
+            verticalAlign="top"
+            align="right"
+            wrapperStyle={{ paddingBottom: 20 }}
+            content={({ payload }) => {
+              if (!payload?.length) return null;
+              return (
+                <div className="flex items-center justify-end gap-4">
+                  {payload.map((entry, i) => (
+                    <div
+                      key={`item-${i}`}
+                      className="flex items-center gap-1 text-sm text-muted-foreground"
+                    >
+                      <div
+                        className="h-3 w-3 rounded-full"
+                        style={{ backgroundColor: entry.color }}
+                      />
+                      <span>{entry.value}</span>
+                    </div>
+                  ))}
+                </div>
+              );
+            }}
+          />
+        )}
+        {categories.map((category, i) => (
+          <RechartsPrimitive.Bar
+            key={category}
+            dataKey={category}
+            fill={colors[i % colors.length]}
+            radius={[4, 4, 0, 0]}
+          />
+        ))}
+      </RechartsPrimitive.BarChart>
+    </ChartContainer>
+  );
+};
+
 export {
   ChartContainer,
   ChartTooltip,
@@ -360,4 +602,6 @@ export {
   ChartLegend,
   ChartLegendContent,
   ChartStyle,
+  AreaChart,
+  BarChart
 }
