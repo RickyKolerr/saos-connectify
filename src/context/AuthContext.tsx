@@ -1,4 +1,3 @@
-
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 type User = {
@@ -6,7 +5,7 @@ type User = {
   email: string;
   name: string | null;
   photoUrl?: string;
-  provider?: "email" | "google" | "github";
+  provider?: "email" | "google" | "github" | "openai";
 };
 
 type AuthContextType = {
@@ -16,6 +15,7 @@ type AuthContextType = {
   signInWithEmail: (email: string, password: string) => Promise<void>;
   signInWithGoogle: () => Promise<void>;
   signInWithGitHub: () => Promise<void>;
+  signInWithOpenAI: () => Promise<void>;
   signUp: (email: string, password: string, name?: string) => Promise<void>;
   signOut: () => Promise<void>;
   sendPasswordResetEmail: (email: string) => Promise<void>;
@@ -59,7 +59,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     checkAuth();
   }, []);
 
-  // Mock authentication functions (to be replaced with real auth provider)
   const signInWithEmail = async (email: string, password: string) => {
     setLoading(true);
     setError(null);
@@ -122,6 +121,29 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setUser(mockUser);
     } catch (err) {
       setError("Failed to sign in with GitHub");
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const signInWithOpenAI = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      // Mock successful OpenAI auth - replace with real auth logic
+      const mockUser: User = {
+        id: "openai-" + Math.random().toString(36).substr(2, 9),
+        email: "user@openai.com",
+        name: "OpenAI User",
+        photoUrl: "https://openai.com/assets/default-user.png",
+        provider: "openai"
+      };
+      
+      localStorage.setItem("user", JSON.stringify(mockUser));
+      setUser(mockUser);
+    } catch (err) {
+      setError("Failed to sign in with OpenAI");
       throw err;
     } finally {
       setLoading(false);
@@ -200,6 +222,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     signInWithEmail,
     signInWithGoogle,
     signInWithGitHub,
+    signInWithOpenAI,
     signUp,
     signOut,
     sendPasswordResetEmail,

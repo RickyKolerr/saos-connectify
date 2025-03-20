@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Helmet } from "react-helmet-async";
-import { Github, Mail, LogIn, Eye, EyeOff } from "lucide-react";
+import { Github, Mail, LogIn, Eye, EyeOff, Sparkles } from "lucide-react";
 
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
@@ -29,7 +29,7 @@ const signInSchema = z.object({
 type SignInValues = z.infer<typeof signInSchema>;
 
 const SignIn = () => {
-  const { signInWithEmail, signInWithGoogle, signInWithGitHub, error } = useAuth();
+  const { signInWithEmail, signInWithGoogle, signInWithGitHub, signInWithOpenAI, error } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -78,6 +78,18 @@ const SignIn = () => {
     }
   };
 
+  const handleOpenAISignIn = async () => {
+    setIsLoading(true);
+    try {
+      await signInWithOpenAI();
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -99,7 +111,7 @@ const SignIn = () => {
               </Alert>
             )}
             
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-3 gap-2">
               <Button 
                 variant="outline" 
                 className="w-full" 
@@ -134,6 +146,17 @@ const SignIn = () => {
               >
                 <Github className="mr-2 h-4 w-4" />
                 GitHub
+              </Button>
+
+              <Button 
+                variant="outline" 
+                className="w-full" 
+                type="button" 
+                disabled={isLoading}
+                onClick={handleOpenAISignIn}
+              >
+                <Sparkles className="mr-2 h-4 w-4" />
+                OpenAI
               </Button>
             </div>
 
