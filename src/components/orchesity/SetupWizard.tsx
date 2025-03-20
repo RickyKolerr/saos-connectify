@@ -6,7 +6,7 @@ import { Progress } from "@/components/ui/progress";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { ArrowLeft, ArrowRight, Check, Copy, Loader2, Settings, AlertCircle, Sparkle, X, RotateCcw } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Copy, Settings, AlertCircle, X, RotateCcw } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { 
@@ -114,7 +114,7 @@ const SetupWizard = () => {
       toast({
         title: "[EN] Setup Completed!",
         description: "[EN] Your endpoint is ready for use.",
-        className: "border border-white/20 bg-black text-white",
+        className: "border border-black/20 bg-white text-black",
         duration: 3000,
       });
     } catch (error) {
@@ -139,7 +139,7 @@ const SetupWizard = () => {
     toast({
       title: "[EN] Copied!",
       description: "[EN] API endpoint copied to clipboard.",
-      className: "border border-white/20 bg-black text-white",
+      className: "border border-black/20 bg-white text-black",
     });
   };
 
@@ -150,7 +150,7 @@ const SetupWizard = () => {
       toast({
         title: "[EN] Settings Saved",
         description: "[EN] Your changes have been saved successfully.",
-        className: "border border-white/20 bg-black text-white",
+        className: "border border-black/20 bg-white text-black",
       });
     }, 1000);
   };
@@ -170,7 +170,7 @@ const SetupWizard = () => {
       toast({
         title: "[EN] Reset Completed",
         description: "[EN] Settings have been reset to defaults.",
-        className: "border border-white/20 bg-black text-white",
+        className: "border border-black/20 bg-white text-black",
       });
     }, 1000);
   };
@@ -180,7 +180,7 @@ const SetupWizard = () => {
       case 1:
         return (
           <div className="space-y-4">
-            <Label htmlFor="apiKey" className="text-white">[EN] API Key</Label>
+            <Label htmlFor="apiKey" className="text-black">[EN] API Key</Label>
             <div className="relative">
               <Input
                 id="apiKey"
@@ -192,7 +192,7 @@ const SetupWizard = () => {
               />
               <div className="absolute right-3 top-1/2 -translate-y-1/2">
                 {apiKeyStatus === "validating" && (
-                  <Loader2 className="h-4 w-4 animate-spin text-white/70" />
+                  <span className="text-black/70">Validating...</span>
                 )}
                 {apiKeyStatus === "valid" && (
                   <Check className="h-5 w-5 text-green-500 stroke-[3]" />
@@ -202,11 +202,11 @@ const SetupWizard = () => {
                 )}
               </div>
             </div>
-            <div className="text-sm text-white/70">
+            <div className="text-sm text-black/70">
               [EN] Get key from:{" "}
-              <a href="#" className="text-white underline hover:text-white/90">Grok</a> |{" "}
-              <a href="#" className="text-white underline hover:text-white/90">OpenAI</a> |{" "}
-              <a href="#" className="text-white underline hover:text-white/90">Claude</a>
+              <a href="#" className="text-black underline hover:text-black/90">Grok</a> |{" "}
+              <a href="#" className="text-black underline hover:text-black/90">OpenAI</a> |{" "}
+              <a href="#" className="text-black underline hover:text-black/90">Claude</a>
             </div>
           </div>
         );
@@ -214,7 +214,7 @@ const SetupWizard = () => {
         return (
           <div className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="projectName" className="text-white">[EN] Project Name</Label>
+              <Label htmlFor="projectName" className="text-black">[EN] Project Name</Label>
               <Input
                 id="projectName"
                 value={projectName}
@@ -225,15 +225,15 @@ const SetupWizard = () => {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="priority" className="text-white">[EN] Priority</Label>
+              <Label htmlFor="priority" className="text-black">[EN] Priority</Label>
               <Select value={priority} onValueChange={setPriority} disabled={isLoading}>
-                <SelectTrigger id="priority" className="w-full border-white/20 bg-black text-white">
+                <SelectTrigger id="priority" className="w-full border-black/20 bg-white text-black">
                   <SelectValue placeholder="[EN] Select priority" />
                 </SelectTrigger>
-                <SelectContent className="bg-black border border-white/20">
-                  <SelectItem value="speed" className="text-white">[EN] Speed</SelectItem>
-                  <SelectItem value="cost" className="text-white">[EN] Cost</SelectItem>
-                  <SelectItem value="accuracy" className="text-white">[EN] Accuracy</SelectItem>
+                <SelectContent className="bg-white border border-black/20">
+                  <SelectItem value="speed" className="text-black">[EN] Speed</SelectItem>
+                  <SelectItem value="cost" className="text-black">[EN] Cost</SelectItem>
+                  <SelectItem value="accuracy" className="text-black">[EN] Accuracy</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -243,23 +243,20 @@ const SetupWizard = () => {
         return (
           <div className="space-y-4">
             <Button 
-              variant="orchesity" 
+              variant="outline" 
               className="w-full relative"
               onClick={handleNext}
               disabled={isLoading}
             >
               {isLoading ? (
-                <>
-                  <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                  [EN] Activating...
-                </>
+                "[EN] Activating..."
               ) : (
                 "[EN] Activate Redis"
               )}
             </Button>
             
             <div className="space-y-2">
-              <Label htmlFor="endpoint" className="text-white">[EN] Your API Endpoint</Label>
+              <Label htmlFor="endpoint" className="text-black">[EN] Your API Endpoint</Label>
               <div className="relative">
                 <Input
                   id="endpoint"
@@ -271,7 +268,7 @@ const SetupWizard = () => {
                 <Button 
                   variant="ghost" 
                   size="icon" 
-                  className="absolute right-1 top-1/2 -translate-y-1/2 text-white hover:text-white/80"
+                  className="absolute right-1 top-1/2 -translate-y-1/2 text-black hover:text-black/80"
                   onClick={copyToClipboard}
                   disabled={isLoading}
                 >
@@ -292,42 +289,42 @@ const SetupWizard = () => {
         <CardHeader>
           <div className="flex justify-between items-center">
             <CardTitle className="flex items-center gap-2">
-              <Check className="h-6 w-6 text-green-400" />
+              <Check className="h-6 w-6 text-green-600" />
               [EN] Setup Complete
             </CardTitle>
           </div>
         </CardHeader>
         <CardContent>
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="w-full bg-black border border-white/20">
-              <TabsTrigger value="config" className="flex-1 data-[state=active]:bg-white/10">
+            <TabsList className="w-full bg-white border border-black/20">
+              <TabsTrigger value="config" className="flex-1 data-[state=active]:bg-black/10">
                 [EN] Configuration
               </TabsTrigger>
-              <TabsTrigger value="settings" className="flex-1 data-[state=active]:bg-white/10">
+              <TabsTrigger value="settings" className="flex-1 data-[state=active]:bg-black/10">
                 <Settings className="h-4 w-4 mr-2" />
                 [EN] Settings
               </TabsTrigger>
             </TabsList>
             
             <TabsContent value="config" className="mt-4">
-              <div className="rounded-md border border-white/10 bg-black/50 p-4">
+              <div className="rounded-md border border-black/10 bg-white/50 p-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <p className="text-sm text-white/70">[EN] Project Name</p>
-                    <p className="text-white font-medium">{projectName}</p>
+                    <p className="text-sm text-black/70">[EN] Project Name</p>
+                    <p className="text-black font-medium">{projectName}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-white/70">[EN] Priority</p>
-                    <p className="text-white font-medium capitalize">{priority}</p>
+                    <p className="text-sm text-black/70">[EN] Priority</p>
+                    <p className="text-black font-medium capitalize">{priority}</p>
                   </div>
                   <div className="md:col-span-2">
-                    <p className="text-sm text-white/70">[EN] API Endpoint</p>
+                    <p className="text-sm text-black/70">[EN] API Endpoint</p>
                     <div className="flex items-center gap-2">
-                      <p className="text-white font-mono text-sm truncate">{endpointUrl}</p>
+                      <p className="text-black font-mono text-sm truncate">{endpointUrl}</p>
                       <Button 
                         variant="ghost" 
                         size="icon" 
-                        className="text-white hover:text-white/80"
+                        className="text-black hover:text-black/80"
                         onClick={copyToClipboard}
                       >
                         <Copy className="h-4 w-4" />
@@ -337,10 +334,10 @@ const SetupWizard = () => {
                 </div>
               </div>
 
-              <div className="bg-black/50 border border-white/10 rounded-md p-4 mt-4">
-                <h4 className="font-medium text-white mb-2">[EN] Get Started</h4>
-                <p className="text-white/70 text-sm mb-4">[EN] Make your first request with:</p>
-                <pre className="bg-[#1F1F1F] p-3 rounded text-white font-mono text-sm overflow-x-auto">
+              <div className="bg-white/50 border border-black/10 rounded-md p-4 mt-4">
+                <h4 className="font-medium text-black mb-2">[EN] Get Started</h4>
+                <p className="text-black/70 text-sm mb-4">[EN] Make your first request with:</p>
+                <pre className="bg-gray-100 p-3 rounded text-black font-mono text-sm overflow-x-auto">
                   {`curl -X POST ${endpointUrl}/ai \\
   -H "Content-Type: application/json" \\
   -d '{"prompt": "Hello, Orchesity!"}'`}
@@ -350,28 +347,28 @@ const SetupWizard = () => {
             
             <TabsContent value="settings" className="mt-4">
               <div className="space-y-4">
-                <div className="rounded-md border border-white/10 bg-black/50 p-4 mb-4">
-                  <h4 className="font-medium text-white mb-2">[EN] Current Configuration</h4>
+                <div className="rounded-md border border-black/10 bg-white/50 p-4 mb-4">
+                  <h4 className="font-medium text-black mb-2">[EN] Current Configuration</h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <p className="text-sm text-white/70">[EN] Provider</p>
-                      <p className="text-white font-medium">{getProviderName()}</p>
+                      <p className="text-sm text-black/70">[EN] Provider</p>
+                      <p className="text-black font-medium">{getProviderName()}</p>
                     </div>
                     <div>
-                      <p className="text-sm text-white/70">[EN] Priority</p>
-                      <p className="text-white font-medium capitalize">{priority}</p>
+                      <p className="text-sm text-black/70">[EN] Priority</p>
+                      <p className="text-black font-medium capitalize">{priority}</p>
                     </div>
                     <div className="md:col-span-2">
-                      <p className="text-sm text-white/70">[EN] Project Name</p>
-                      <p className="text-white font-medium">{projectName}</p>
+                      <p className="text-sm text-black/70">[EN] Project Name</p>
+                      <p className="text-black font-medium">{projectName}</p>
                     </div>
                   </div>
                 </div>
               
-                <div className="bg-black/50 border border-white/10 rounded-md p-4">
+                <div className="bg-white/50 border border-black/10 rounded-md p-4">
                   <div className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="edit-api-key" className="text-white">[EN] API Key</Label>
+                      <Label htmlFor="edit-api-key" className="text-black">[EN] API Key</Label>
                       <Input
                         id="edit-api-key"
                         value={apiKey}
@@ -382,7 +379,7 @@ const SetupWizard = () => {
                     </div>
                     
                     <div className="space-y-2">
-                      <Label htmlFor="edit-project-name" className="text-white">[EN] Project Name</Label>
+                      <Label htmlFor="edit-project-name" className="text-black">[EN] Project Name</Label>
                       <Input
                         id="edit-project-name"
                         value={projectName}
@@ -393,38 +390,35 @@ const SetupWizard = () => {
                     </div>
                     
                     <div className="space-y-2">
-                      <Label htmlFor="edit-priority" className="text-white">[EN] Priority</Label>
+                      <Label htmlFor="edit-priority" className="text-black">[EN] Priority</Label>
                       <Select value={priority} onValueChange={setPriority} disabled={isLoading}>
-                        <SelectTrigger id="edit-priority" className="w-full border-white/20 bg-black text-white">
+                        <SelectTrigger id="edit-priority" className="w-full border-black/20 bg-white text-black">
                           <SelectValue placeholder="[EN] Select priority" />
                         </SelectTrigger>
-                        <SelectContent className="bg-black border border-white/20">
-                          <SelectItem value="speed" className="text-white">[EN] Speed</SelectItem>
-                          <SelectItem value="cost" className="text-white">[EN] Cost</SelectItem>
-                          <SelectItem value="accuracy" className="text-white">[EN] Accuracy</SelectItem>
+                        <SelectContent className="bg-white border border-black/20">
+                          <SelectItem value="speed" className="text-black">[EN] Speed</SelectItem>
+                          <SelectItem value="cost" className="text-black">[EN] Cost</SelectItem>
+                          <SelectItem value="accuracy" className="text-black">[EN] Accuracy</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                     
                     <div className="flex flex-col sm:flex-row gap-2">
                       <Button 
-                        variant="orchesity" 
+                        variant="outline" 
                         className="flex-1"
                         onClick={saveSettings}
                         disabled={isLoading}
                       >
                         {isLoading ? (
-                          <>
-                            <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                            [EN] Saving...
-                          </>
+                          "[EN] Saving..."
                         ) : (
                           "[EN] Save Changes"
                         )}
                       </Button>
                       
                       <Button 
-                        variant="orchesity" 
+                        variant="outline" 
                         className="flex-1"
                         onClick={resetToDefaults}
                         disabled={isLoading}
@@ -450,20 +444,20 @@ const SetupWizard = () => {
           <CardTitle>[EN] Quick Setup Wizard</CardTitle>
           <div className="mt-2">
             <Progress value={(step / 3) * 100} className="h-2" />
-            <p className="text-xs text-white/70 mt-2">[EN] Step {step} of 3</p>
+            <p className="text-xs text-black/70 mt-2">[EN] Step {step} of 3</p>
           </div>
         </CardHeader>
         <CardContent>
           {isLoading && (
-            <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-10 rounded-lg">
-              <Loader2 className="h-8 w-8 animate-spin text-white" />
+            <div className="absolute inset-0 flex items-center justify-center bg-white/50 z-10 rounded-lg">
+              <p className="text-black font-medium">Processing...</p>
             </div>
           )}
           {renderStepContent()}
         </CardContent>
         <CardFooter className="flex justify-between">
           <Button 
-            variant="orchesity" 
+            variant="outline" 
             onClick={handleBack} 
             disabled={step === 1 || isLoading}
             size={isMobile ? "sm" : "default"}
@@ -473,17 +467,14 @@ const SetupWizard = () => {
             [EN] Back
           </Button>
           <Button 
-            variant="orchesity" 
+            variant="outline" 
             onClick={handleNext} 
             disabled={isLoading}
             size={isMobile ? "sm" : "default"}
             className="gap-2"
           >
             {isLoading ? (
-              <>
-                <Loader2 className="h-4 w-4 animate-spin" />
-                {step === 3 ? "[EN] Completing..." : "[EN] Processing..."}
-              </>
+              step === 3 ? "[EN] Completing..." : "[EN] Processing..."
             ) : (
               <>
                 {step === 3 ? "[EN] Complete" : "[EN] Next"}
@@ -495,22 +486,22 @@ const SetupWizard = () => {
       </Card>
 
       <AlertDialog open={showConfirmDialog} onOpenChange={setShowConfirmDialog}>
-        <AlertDialogContent className="bg-black text-white border border-white/20">
+        <AlertDialogContent className="bg-white text-black border border-black/20">
           <AlertDialogHeader>
-            <AlertDialogTitle className="text-white flex items-center gap-2">
-              <AlertCircle className="h-5 w-5 text-white" />
+            <AlertDialogTitle className="text-black flex items-center gap-2">
+              <AlertCircle className="h-5 w-5 text-black" />
               [EN] Confirm Activation
             </AlertDialogTitle>
-            <AlertDialogDescription className="text-white/80">
+            <AlertDialogDescription className="text-black/80">
               [EN] Are you sure? This will start your service and allocate resources for your project.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel className="bg-black text-white border border-white/40 hover:bg-white/10">
+            <AlertDialogCancel className="bg-white text-black border border-black/40 hover:bg-black/10">
               [EN] No, Cancel
             </AlertDialogCancel>
             <AlertDialogAction 
-              className="bg-black text-white border border-white hover:bg-white/10"
+              className="bg-white text-black border border-black hover:bg-black/10"
               onClick={handleActivateRedis}
             >
               [EN] Yes, Activate
@@ -520,22 +511,22 @@ const SetupWizard = () => {
       </AlertDialog>
 
       <AlertDialog open={showResetDialog} onOpenChange={setShowResetDialog}>
-        <AlertDialogContent className="bg-black text-white border border-white/20">
+        <AlertDialogContent className="bg-white text-black border border-black/20">
           <AlertDialogHeader>
-            <AlertDialogTitle className="text-white flex items-center gap-2">
-              <AlertCircle className="h-5 w-5 text-white" />
+            <AlertDialogTitle className="text-black flex items-center gap-2">
+              <AlertCircle className="h-5 w-5 text-black" />
               [EN] Reset Configuration
             </AlertDialogTitle>
-            <AlertDialogDescription className="text-white/80">
+            <AlertDialogDescription className="text-black/80">
               [EN] This will reset all settings to their default values. Are you sure you want to continue?
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel className="bg-black text-white border border-white/40 hover:bg-white/10">
+            <AlertDialogCancel className="bg-white text-black border border-black/40 hover:bg-black/10">
               [EN] No, Cancel
             </AlertDialogCancel>
             <AlertDialogAction 
-              className="bg-black text-white border border-white hover:bg-white/10"
+              className="bg-white text-black border border-black hover:bg-black/10"
               onClick={confirmReset}
             >
               [EN] Yes, Reset
