@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -30,6 +29,7 @@ import SignUp from "./pages/auth/SignUp";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
 import ChatInterface from "./components/ChatInterface";
+import AdvancedConfig from "./pages/docs/AdvancedConfig";
 
 const queryClient = new QueryClient();
 
@@ -66,6 +66,7 @@ const App = () => (
                 <Route path="/auth/forgot-password" element={<ForgotPassword />} />
                 <Route path="/auth/reset-password" element={<ResetPassword />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="/documentation/advanced-config" element={<AdvancedConfig />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
               <ChatInterface />

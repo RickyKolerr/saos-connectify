@@ -19,14 +19,54 @@ import {
 
 const Documentation = () => {
   const guideItems = [
-    { title: "Advanced Configuration", icon: <Settings className="h-5 w-5" /> },
-    { title: "Provider Selection", icon: <Server className="h-5 w-5" /> },
-    { title: "Caching Strategies", icon: <Layers className="h-5 w-5" /> },
-    { title: "Error Handling", icon: <AlertTriangle className="h-5 w-5" /> },
-    { title: "Cost Optimization", icon: <DollarSign className="h-5 w-5" /> },
-    { title: "Scalability", icon: <TrendingUp className="h-5 w-5" /> },
-    { title: "Security Best Practices", icon: <Shield className="h-5 w-5" /> },
-    { title: "Monitoring & Analytics", icon: <BarChart4 className="h-5 w-5" /> }
+    { 
+      title: "Advanced Configuration", 
+      icon: <Settings className="h-5 w-5" />,
+      href: "/documentation/advanced-config",
+      description: "Learn about custom settings, environment variables, and advanced features"
+    },
+    { 
+      title: "Provider Selection", 
+      icon: <Server className="h-5 w-5" />,
+      href: "/documentation/provider-selection",
+      description: "Compare and choose the right AI providers for your needs"
+    },
+    { 
+      title: "Caching Strategies", 
+      icon: <Layers className="h-5 w-5" />,
+      href: "/documentation/caching",
+      description: "Implement efficient caching for better performance"
+    },
+    { 
+      title: "Error Handling", 
+      icon: <AlertTriangle className="h-5 w-5" />,
+      href: "/documentation/error-handling",
+      description: "Best practices for handling errors and edge cases"
+    },
+    { 
+      title: "Cost Optimization", 
+      icon: <DollarSign className="h-5 w-5" />,
+      href: "/documentation/cost-optimization",
+      description: "Strategies to optimize costs and improve efficiency"
+    },
+    { 
+      title: "Scalability", 
+      icon: <TrendingUp className="h-5 w-5" />,
+      href: "/documentation/scalability",
+      description: "Scale your application for growing demands"
+    },
+    { 
+      title: "Security Best Practices", 
+      icon: <Shield className="h-5 w-5" />,
+      href: "/documentation/security",
+      description: "Implement robust security measures"
+    },
+    { 
+      title: "Monitoring & Analytics", 
+      icon: <BarChart4 className="h-5 w-5" />,
+      href: "/documentation/monitoring",
+      description: "Track performance and gather insights"
+    }
   ];
 
   return (
