@@ -32,6 +32,13 @@ import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
 import ChatInterface from "./components/ChatInterface";
 import AdvancedConfig from "./pages/docs/AdvancedConfig";
+import ProviderSelection from "./pages/docs/ProviderSelection";
+import CachingStrategies from "./pages/docs/CachingStrategies";
+import ErrorHandling from "./pages/docs/ErrorHandling";
+import CostOptimization from "./pages/docs/CostOptimization";
+import Scalability from "./pages/docs/Scalability";
+import SecurityBestPractices from "./pages/docs/SecurityBestPractices";
+import MonitoringAnalytics from "./pages/docs/MonitoringAnalytics";
 
 const queryClient = new QueryClient();
 
@@ -68,8 +75,16 @@ const App = () => (
                 <Route path="/auth/signup" element={<SignUp />} />
                 <Route path="/auth/forgot-password" element={<ForgotPassword />} />
                 <Route path="/auth/reset-password" element={<ResetPassword />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                {/* Documentation Routes */}
                 <Route path="/documentation/advanced-config" element={<AdvancedConfig />} />
+                <Route path="/documentation/provider-selection" element={<ProviderSelection />} />
+                <Route path="/documentation/caching" element={<CachingStrategies />} />
+                <Route path="/documentation/error-handling" element={<ErrorHandling />} />
+                <Route path="/documentation/cost-optimization" element={<CostOptimization />} />
+                <Route path="/documentation/scalability" element={<Scalability />} />
+                <Route path="/documentation/security" element={<SecurityBestPractices />} />
+                <Route path="/documentation/monitoring" element={<MonitoringAnalytics />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
               <ChatInterface />
