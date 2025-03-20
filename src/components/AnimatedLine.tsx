@@ -14,7 +14,7 @@ const AnimatedLine: React.FC = () => {
       
       // Apply the transform to move left/right
       lineRef.current.style.transform = `translateX(${translateValue}%)`;
-      lineRef.current.style.opacity = Math.min(0.8 + scrollPercentage * 0.4, 1).toString();
+      lineRef.current.style.opacity = Math.min(0.7 + scrollPercentage * 0.3, 1).toString();
     };
 
     // Add scroll event listener
@@ -28,12 +28,12 @@ const AnimatedLine: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed w-full z-40">
+    <div className="fixed top-[72px] w-full z-40"> {/* Position right under navbar */}
       <div 
         ref={lineRef}
-        className="h-[2px] w-full bg-white/40 transform transition-transform duration-300 ease-out"
+        className="h-[3px] w-full bg-white/60 transform transition-transform duration-300 ease-out animate-line-glow"
         style={{
-          boxShadow: "0 0 8px rgba(255, 255, 255, 0.5), 0 0 12px rgba(255, 255, 255, 0.3)",
+          boxShadow: "0 0 12px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4)",
         }}
       />
     </div>
