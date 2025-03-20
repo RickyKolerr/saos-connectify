@@ -2,8 +2,32 @@
 import { Github, Twitter, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const { toast } = useToast();
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !email.includes('@')) {
+      toast({
+        title: "Invalid email",
+        description: "Please enter a valid email address.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    // In a real app, this would send the email to a server
+    toast({
+      title: "Thanks for subscribing!",
+      description: "You'll receive our newsletter at " + email
+    });
+    setEmail("");
+  };
+
   return (
     <footer className="bg-black text-white py-12 border-t border-white/10">
       <div className="container px-4 md:px-6">
@@ -11,23 +35,23 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex flex-col items-start">
               <h3 className="text-xl font-bold text-white relative inline-block group">
-                ORCHESITY
+                <Link to="/">ORCHESITY</Link>
                 <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white/60 transition-all duration-300 group-hover:w-full"></div>
               </h3>
               <span className="text-xs text-white/50">Powered by Kolerr Technologies</span>
             </div>
             <p className="text-white/60 text-sm">Your bridge to smarter AI solutions.</p>
             <div className="flex space-x-4">
-              <a href="#" className="text-white/60 hover:text-white transition-colors duration-300 hover:scale-110 transform">
+              <a href="https://github.com" target="_blank" rel="noreferrer" className="text-white/60 hover:text-white transition-colors duration-300 hover:scale-110 transform">
                 <Github size={20} />
               </a>
-              <a href="#" className="text-white/60 hover:text-white transition-colors duration-300 hover:scale-110 transform">
+              <a href="https://twitter.com" target="_blank" rel="noreferrer" className="text-white/60 hover:text-white transition-colors duration-300 hover:scale-110 transform">
                 <Twitter size={20} />
               </a>
-              <a href="#" className="text-white/60 hover:text-white transition-colors duration-300 hover:scale-110 transform">
+              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-white/60 hover:text-white transition-colors duration-300 hover:scale-110 transform">
                 <Linkedin size={20} />
               </a>
-              <a href="#" className="text-white/60 hover:text-white transition-colors duration-300 hover:scale-110 transform">
+              <a href="mailto:contact@orchesity.com" className="text-white/60 hover:text-white transition-colors duration-300 hover:scale-110 transform">
                 <Mail size={20} />
               </a>
             </div>
@@ -70,16 +94,18 @@ const Footer = () => {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4">
-            <div className="relative group">
+            <form onSubmit={handleSubscribe} className="relative group flex">
               <input
                 type="email"
                 placeholder="Your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full sm:w-64 px-4 py-2 rounded-l-md focus:outline-none bg-black border border-white/20 text-white text-sm focus:border-white/50 transition-all duration-300"
               />
-              <Button className="absolute right-0 top-0 bottom-0 rounded-l-none bg-white text-black hover:bg-white/90 transition-all duration-300 group-hover:shadow-[0_0_10px_rgba(255,255,255,0.2)]">
+              <Button type="submit" className="rounded-l-none bg-white text-black hover:bg-white/90 transition-all duration-300 group-hover:shadow-[0_0_10px_rgba(255,255,255,0.2)]">
                 Subscribe
               </Button>
-            </div>
+            </form>
           </div>
         </div>
       </div>

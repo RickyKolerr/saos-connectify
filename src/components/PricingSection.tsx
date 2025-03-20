@@ -200,6 +200,10 @@ const PricingTier = ({
           <Link to="/contact">
             {cta}
           </Link>
+        ) : onPremise ? (
+          <Link to="/contact?plan={id}">
+            {cta}
+          </Link>
         ) : (
           <Link to={`/checkout/${id}`}>
             {cta}

@@ -1,6 +1,6 @@
-
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -39,12 +39,16 @@ const HeroSection = () => {
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 min-[400px]:gap-4 pt-2">
-              <Button className="bg-white text-black hover:bg-white/90 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-300 group">
-                Get Started Now
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              <Button asChild className="bg-white text-black hover:bg-white/90 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-300 group">
+                <Link to="/auth/signup">
+                  Get Started Now
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </Button>
-              <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 hover:border-white/50 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300">
-                Request Demo
+              <Button asChild variant="outline" className="border-white/30 text-white hover:bg-white/10 hover:border-white/50 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300">
+                <Link to="/contact">
+                  Request Demo
+                </Link>
               </Button>
             </div>
             <div className="flex items-center space-x-4 text-sm pt-2">
