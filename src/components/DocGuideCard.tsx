@@ -3,6 +3,7 @@ import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface DocGuideCardProps {
   title: string;
@@ -36,10 +37,10 @@ const DocGuideCard = ({ title, icon, href = "#", description }: DocGuideCardProp
             className="p-0 h-auto text-white/50 hover:text-white/70 group-hover:text-white/70 transition-all duration-300 flex items-center"
             asChild
           >
-            <a href={href}>
+            <Link to={href}>
               Read guide
               <ChevronRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </a>
+            </Link>
           </Button>
         </div>
       </CardContent>

@@ -132,6 +132,8 @@ const Documentation = () => {
                         key={index}
                         title={guide.title}
                         icon={guide.icon}
+                        href={guide.href}
+                        description={guide.description}
                       />
                     ))}
                   </div>
