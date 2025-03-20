@@ -1,30 +1,49 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, LogOut } from "lucide-react";
+import { Menu, X, LogOut, Circle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const OrchesityNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [apiStatus, setApiStatus] = useState<"online" | "offline">("online");
   const location = useLocation();
 
   const navItems = [
-    { name: "Dashboard", path: "/orchesity/dashboard" },
-    { name: "Developer Portal", path: "/orchesity/developer" },
-    { name: "Business Portal", path: "/orchesity/business" },
+    { name: "[EN] Dashboard", path: "/orchesity/dashboard" },
+    { name: "[EN] Developer Portal", path: "/orchesity/developer" },
+    { name: "[EN] Business Portal", path: "/orchesity/business" },
   ];
 
   const isActive = (path: string) => {
     return location.pathname === path;
   };
 
+  // Simulate API status check - in a real app, this would be a fetch to your backend
+  useEffect(() => {
+    const checkApiStatus = () => {
+      // Simulate random status changes for demonstration purposes
+      const isOnline = Math.random() > 0.2; // 80% chance of being online
+      setApiStatus(isOnline ? "online" : "offline");
+    };
+
+    // Initial check
+    checkApiStatus();
+
+    // Set up interval for periodic checks
+    const intervalId = setInterval(checkApiStatus, 30000); // Check every 30 seconds
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
     <nav className="bg-black border-b border-white/10 py-3 sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center px-4">
         <div className="flex items-center">
           <Link to="/orchesity/dashboard" className="text-xl font-bold text-white mr-8">
-            Orchesity
+            [EN] Orchesity
           </Link>
           
           {/* Desktop Navigation */}
@@ -54,15 +73,36 @@ const OrchesityNavbar = () => {
           </div>
         </div>
 
-        {/* Logout Button */}
-        <div className="flex items-center">
+        {/* Status Indicator and Logout Button */}
+        <div className="flex items-center gap-4">
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div className="flex items-center gap-2">
+                  <Circle 
+                    className={cn(
+                      "h-3 w-3 transition-colors duration-300",
+                      apiStatus === "online" ? "fill-white text-white" : "fill-gray-500 text-gray-500"
+                    )} 
+                  />
+                  <span className="text-xs text-white/70 hidden sm:inline">
+                    [EN] API {apiStatus === "online" ? "Online" : "Offline"}
+                  </span>
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>[EN] Backend API Status: {apiStatus}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+
           <Button 
             variant="orchesity" 
             size="sm" 
             className="hidden md:flex items-center gap-2"
           >
             <LogOut className="h-4 w-4" />
-            Logout
+            [EN] Logout
           </Button>
 
           {/* Mobile Menu Toggle */}
@@ -96,14 +136,25 @@ const OrchesityNavbar = () => {
                 {item.name}
               </Link>
             ))}
-            <div className="pt-2 border-t border-white/10">
+            <div className="pt-2 border-t border-white/10 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Circle 
+                  className={cn(
+                    "h-3 w-3",
+                    apiStatus === "online" ? "fill-white text-white" : "fill-gray-500 text-gray-500"
+                  )} 
+                />
+                <span className="text-xs text-white/70">
+                  [EN] API {apiStatus === "online" ? "Online" : "Offline"}
+                </span>
+              </div>
               <Button 
                 variant="orchesity" 
                 size="sm" 
-                className="w-full flex items-center justify-center gap-2"
+                className="flex items-center justify-center gap-2"
               >
                 <LogOut className="h-4 w-4" />
-                Logout
+                [EN] Logout
               </Button>
             </div>
           </div>

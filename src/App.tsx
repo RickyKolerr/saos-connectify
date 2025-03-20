@@ -45,6 +45,8 @@ import MonitoringAnalytics from "./pages/docs/MonitoringAnalytics";
 import OrchesityDashboard from "./pages/orchesity/Dashboard";
 import OrchesityDeveloper from "./pages/orchesity/Developer";
 import OrchesityBusiness from "./pages/orchesity/Business";
+import OrchesityNotFound from "./pages/orchesity/NotFound";
+import OrchesityServerError from "./pages/orchesity/ServerError";
 
 const queryClient = new QueryClient();
 
@@ -96,6 +98,8 @@ const App = () => (
                 <Route path="/orchesity/dashboard" element={<OrchesityDashboard />} />
                 <Route path="/orchesity/developer" element={<OrchesityDeveloper />} />
                 <Route path="/orchesity/business" element={<OrchesityBusiness />} />
+                <Route path="/orchesity/error" element={<OrchesityServerError />} />
+                <Route path="/orchesity/*" element={<OrchesityNotFound />} />
                 
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
