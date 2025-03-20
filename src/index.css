@@ -115,30 +115,27 @@
 
 @keyframes lineGlow {
   0% {
-    opacity: 0.6;
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+    opacity: 0.7;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
   }
   50% {
-    opacity: 0.9;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 25px rgba(255, 255, 255, 0.4);
+    opacity: 1;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 255, 255, 0.6);
   }
   100% {
-    opacity: 0.6;
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+    opacity: 0.7;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
   }
 }
 
-/* Add smooth scroll behavior */
 html {
   scroll-behavior: smooth;
 }
 
-/* Add selection styling */
 ::selection {
   @apply bg-white/30 text-foreground;
 }
 
-/* Glowing animations */
 @keyframes glow {
   0%, 100% {
     opacity: 0.8;
@@ -150,7 +147,6 @@ html {
   }
 }
 
-/* Shimmer effect */
 @keyframes shimmer {
   0% {
     background-position: -200% 0;
@@ -160,7 +156,6 @@ html {
   }
 }
 
-/* Gradient animations */
 @keyframes gradient-shift {
   0% {
     background-position: 0% 50%;
@@ -173,14 +168,12 @@ html {
   }
 }
 
-/* Gradient backgrounds for the site */
 .bg-mesh-gradient {
   background: linear-gradient(125deg, #000000, #050510, #0a0a14, #070718);
   background-size: 400% 400%;
   animation: gradient-shift 15s ease infinite;
 }
 
-/* Add animation class for the line */
 .animate-line-glow {
   animation: lineGlow 3s ease-in-out infinite;
 }
