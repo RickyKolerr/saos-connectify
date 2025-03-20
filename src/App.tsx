@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider } from "./context/AuthContext";
 import { PaymentProvider } from "./context/PaymentContext";
+import AnimatedLine from "./components/AnimatedLine";
 import Index from "./pages/Index";
 import Features from "./pages/Features";
 import HowItWorks from "./pages/HowItWorks";
@@ -42,6 +44,7 @@ const App = () => (
             <Toaster />
             <Sonner />
             <BrowserRouter>
+              <AnimatedLine />
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/features" element={<Features />} />
