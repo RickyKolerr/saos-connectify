@@ -3,9 +3,32 @@ import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import DocGuideCard from "@/components/DocGuideCard";
+import { 
+  ChevronRight, 
+  Settings, 
+  Server, 
+  Layers, 
+  AlertTriangle,
+  DollarSign,
+  TrendingUp,
+  Shield,
+  BarChart4
+} from "lucide-react";
 
 const Documentation = () => {
+  const guideItems = [
+    { title: "Advanced Configuration", icon: <Settings className="h-5 w-5" /> },
+    { title: "Provider Selection", icon: <Server className="h-5 w-5" /> },
+    { title: "Caching Strategies", icon: <Layers className="h-5 w-5" /> },
+    { title: "Error Handling", icon: <AlertTriangle className="h-5 w-5" /> },
+    { title: "Cost Optimization", icon: <DollarSign className="h-5 w-5" /> },
+    { title: "Scalability", icon: <TrendingUp className="h-5 w-5" /> },
+    { title: "Security Best Practices", icon: <Shield className="h-5 w-5" /> },
+    { title: "Monitoring & Analytics", icon: <BarChart4 className="h-5 w-5" /> }
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -55,38 +78,21 @@ const Documentation = () => {
                   </div>
                   
                   <div className="text-center">
-                    <a href="#" className="inline-flex items-center text-white hover:text-white/80 transition-colors">
+                    <Button variant="link" className="text-white hover:text-white/80 transition-colors">
                       Read full quickstart guide
                       <ChevronRight className="ml-1 h-4 w-4" />
-                    </a>
+                    </Button>
                   </div>
                 </TabsContent>
                 
                 <TabsContent value="guides" className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {[
-                      "Advanced Configuration", 
-                      "Provider Selection", 
-                      "Caching Strategies", 
-                      "Error Handling",
-                      "Cost Optimization",
-                      "Scalability",
-                      "Security Best Practices",
-                      "Monitoring & Analytics"
-                    ].map((guide, index) => (
-                      <a 
-                        key={index} 
-                        href="#" 
-                        className="p-6 rounded-lg border border-white/10 bg-black/40 hover:bg-black/60 hover:border-white/20 transition-all duration-300 group"
-                      >
-                        <h3 className="text-lg font-medium text-white group-hover:text-gradient transition-all duration-300">
-                          {guide}
-                        </h3>
-                        <div className="flex items-center text-white/50 mt-2 text-sm group-hover:text-white/70 transition-all duration-300">
-                          Read guide
-                          <ChevronRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                        </div>
-                      </a>
+                    {guideItems.map((guide, index) => (
+                      <DocGuideCard
+                        key={index}
+                        title={guide.title}
+                        icon={guide.icon}
+                      />
                     ))}
                   </div>
                 </TabsContent>
