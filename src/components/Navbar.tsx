@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Menu, X, Layers } from "lucide-react";
+import { Menu, X, Layers, LogIn, UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -45,9 +45,20 @@ const Navbar = () => {
             Contact
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white/60 transition-all duration-300 group-hover:w-full"></span>
           </Link>
-          <Button variant="default" size="sm" className="bg-white text-black hover:bg-white/90 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] ml-2 transition-all duration-300">
-            Get Started
-          </Button>
+          <div className="flex items-center gap-2 border-l border-white/10 pl-4 ml-2">
+            <Button asChild variant="ghost" size="sm" className="text-white/80 hover:text-white hover:bg-white/10">
+              <Link to="/auth/signin" className="flex items-center gap-1">
+                <LogIn className="h-4 w-4" />
+                Sign In
+              </Link>
+            </Button>
+            <Button asChild variant="default" size="sm" className="bg-white text-black hover:bg-white/90 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all duration-300">
+              <Link to="/auth/signup" className="flex items-center gap-1">
+                <UserPlus className="h-4 w-4" />
+                Sign Up
+              </Link>
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Navigation Toggle */}
@@ -110,12 +121,29 @@ const Navbar = () => {
             >
               Contact
             </Link>
-            <Button 
-              className="bg-white text-black hover:bg-white/90 w-full transition-all duration-300"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Get Started
-            </Button>
+            <div className="border-t border-white/10 pt-4 space-y-2">
+              <Button 
+                asChild
+                variant="outline" 
+                className="w-full border-white/20 text-white hover:bg-white/10 hover:border-white/30"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Link to="/auth/signin" className="flex items-center justify-center gap-2">
+                  <LogIn className="h-4 w-4" />
+                  Sign In
+                </Link>
+              </Button>
+              <Button 
+                asChild
+                className="bg-white text-black hover:bg-white/90 w-full transition-all duration-300"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Link to="/auth/signup" className="flex items-center justify-center gap-2">
+                  <UserPlus className="h-4 w-4" />
+                  Sign Up
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       )}
