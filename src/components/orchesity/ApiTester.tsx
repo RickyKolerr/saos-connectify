@@ -39,12 +39,7 @@ const ApiTester = () => {
     // Check rate limits first
     if (rateLimit.current >= rateLimit.max * 0.95) {
       toast({
-        title: (
-          <div className="flex items-center gap-2 text-yellow-300">
-            <AlertTriangle className="h-4 w-4" />
-            [EN] Rate Limit Warning
-          </div>
-        ),
+        title: "[EN] Rate Limit Warning",
         description: `[EN] Approaching API limit: ${rateLimit.current}/${rateLimit.max} requests this hour.`,
         className: "border border-yellow-600/30 bg-black text-white",
       });
