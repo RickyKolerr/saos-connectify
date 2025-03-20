@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider } from "./context/AuthContext";
 import { PaymentProvider } from "./context/PaymentContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import AnimatedLine from "./components/AnimatedLine";
 import Index from "./pages/Index";
 import Features from "./pages/Features";
@@ -47,49 +48,51 @@ const App = () => (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <PaymentProvider>
-          <TooltipProvider>
-            <Toaster />
-            <Sonner />
-            <BrowserRouter>
-              <AnimatedLine />
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/features" element={<Features />} />
-                <Route path="/how-it-works" element={<HowItWorks />} />
-                <Route path="/benefits" element={<Benefits />} />
-                <Route path="/pricing" element={<Pricing />} />
-                <Route path="/checkout/:planId" element={<Checkout />} />
-                <Route path="/billing" element={<Billing />} />
-                <Route path="/documentation" element={<Documentation />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/careers" element={<Careers />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/api-reference" element={<ApiReference />} />
-                <Route path="/developer-program" element={<DeveloperProgram />} />
-                <Route path="/status" element={<Status />} />
-                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                <Route path="/terms-of-service" element={<TermsOfService />} />
-                {/* Auth Routes */}
-                <Route path="/auth/signin" element={<SignIn />} />
-                <Route path="/auth/signup" element={<SignUp />} />
-                <Route path="/auth/forgot-password" element={<ForgotPassword />} />
-                <Route path="/auth/reset-password" element={<ResetPassword />} />
-                {/* Documentation Routes */}
-                <Route path="/documentation/advanced-config" element={<AdvancedConfig />} />
-                <Route path="/documentation/provider-selection" element={<ProviderSelection />} />
-                <Route path="/documentation/caching" element={<CachingStrategies />} />
-                <Route path="/documentation/error-handling" element={<ErrorHandling />} />
-                <Route path="/documentation/cost-optimization" element={<CostOptimization />} />
-                <Route path="/documentation/scalability" element={<Scalability />} />
-                <Route path="/documentation/security" element={<SecurityBestPractices />} />
-                <Route path="/documentation/monitoring" element={<MonitoringAnalytics />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-              <ChatInterface />
-            </BrowserRouter>
-          </TooltipProvider>
+          <ThemeProvider>
+            <TooltipProvider>
+              <Toaster />
+              <Sonner />
+              <BrowserRouter>
+                <AnimatedLine />
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/features" element={<Features />} />
+                  <Route path="/how-it-works" element={<HowItWorks />} />
+                  <Route path="/benefits" element={<Benefits />} />
+                  <Route path="/pricing" element={<Pricing />} />
+                  <Route path="/checkout/:planId" element={<Checkout />} />
+                  <Route path="/billing" element={<Billing />} />
+                  <Route path="/documentation" element={<Documentation />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/careers" element={<Careers />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/api-reference" element={<ApiReference />} />
+                  <Route path="/developer-program" element={<DeveloperProgram />} />
+                  <Route path="/status" element={<Status />} />
+                  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                  <Route path="/terms-of-service" element={<TermsOfService />} />
+                  {/* Auth Routes */}
+                  <Route path="/auth/signin" element={<SignIn />} />
+                  <Route path="/auth/signup" element={<SignUp />} />
+                  <Route path="/auth/forgot-password" element={<ForgotPassword />} />
+                  <Route path="/auth/reset-password" element={<ResetPassword />} />
+                  {/* Documentation Routes */}
+                  <Route path="/documentation/advanced-config" element={<AdvancedConfig />} />
+                  <Route path="/documentation/provider-selection" element={<ProviderSelection />} />
+                  <Route path="/documentation/caching" element={<CachingStrategies />} />
+                  <Route path="/documentation/error-handling" element={<ErrorHandling />} />
+                  <Route path="/documentation/cost-optimization" element={<CostOptimization />} />
+                  <Route path="/documentation/scalability" element={<Scalability />} />
+                  <Route path="/documentation/security" element={<SecurityBestPractices />} />
+                  <Route path="/documentation/monitoring" element={<MonitoringAnalytics />} />
+                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+                <ChatInterface />
+              </BrowserRouter>
+            </TooltipProvider>
+          </ThemeProvider>
         </PaymentProvider>
       </AuthProvider>
     </QueryClientProvider>
