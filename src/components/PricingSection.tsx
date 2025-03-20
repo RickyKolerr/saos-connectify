@@ -16,13 +16,14 @@ type PricingPlan = {
   primary?: boolean;
   delay: string;
   cta: string;
+  onPremise?: boolean;
 };
 
 const pricingPlans: PricingPlan[] = [
   {
     id: "starter",
     name: "Starter",
-    monthlyPrice: 99,
+    monthlyPrice: 199,
     description: "Perfect for startups and small projects",
     features: [
       "10,000 API calls per month",
@@ -37,7 +38,7 @@ const pricingPlans: PricingPlan[] = [
   {
     id: "standard",
     name: "Standard",
-    monthlyPrice: 199,
+    monthlyPrice: 499,
     description: "Ideal for growing teams with moderate AI needs",
     features: [
       "25,000 API calls per month",
@@ -53,7 +54,7 @@ const pricingPlans: PricingPlan[] = [
   {
     id: "professional",
     name: "Professional",
-    monthlyPrice: 299,
+    monthlyPrice: 799,
     description: "For growing companies with serious AI needs",
     features: [
       "50,000 API calls per month",
@@ -88,6 +89,47 @@ const pricingPlans: PricingPlan[] = [
   }
 ];
 
+// On-premise packages
+const onPremisePlans: PricingPlan[] = [
+  {
+    id: "on-premise-standard",
+    name: "On-Premise Standard",
+    monthlyPrice: 999,
+    description: "Self-hosted solution for security-focused teams",
+    features: [
+      "Full platform deployment on your infrastructure",
+      "Up to 10 concurrent projects",
+      "Local AI model hosting capability",
+      "Standard implementation support",
+      "Quarterly updates",
+      "8/5 technical support"
+    ],
+    delay: "0.1s",
+    cta: "Request Quote",
+    onPremise: true
+  },
+  {
+    id: "on-premise-enterprise",
+    name: "On-Premise Enterprise",
+    monthlyPrice: 1999,
+    description: "Complete control with maximum security",
+    features: [
+      "Unlimited self-hosted deployments",
+      "Unlimited concurrent projects",
+      "Custom integrations with existing systems",
+      "White-labeled solution option",
+      "Priority implementation support",
+      "Monthly updates",
+      "24/7 technical support",
+      "Compliance assistance (HIPAA, GDPR, etc.)"
+    ],
+    primary: true,
+    delay: "0.2s",
+    cta: "Request Quote",
+    onPremise: true
+  }
+];
+
 const PricingTier = ({ 
   id,
   name, 
@@ -96,7 +138,8 @@ const PricingTier = ({
   features, 
   primary = false,
   delay,
-  cta
+  cta,
+  onPremise = false
 }: { 
   id: string;
   name: string; 
@@ -106,6 +149,7 @@ const PricingTier = ({
   primary?: boolean;
   delay: string;
   cta: string;
+  onPremise?: boolean;
 }) => (
   <Card 
     className={`rounded-xl p-6 ${primary ? 'border-2 border-white/50 shadow-lg' : 'border border-border'} 
@@ -169,6 +213,7 @@ const PricingTier = ({
 const PricingSection = () => {
   const [isAnnual, setIsAnnual] = useState(false);
   const annualDiscount = 0.15; // 15% discount for annual billing
+  const [showOnPremise, setShowOnPremise] = useState(false);
 
   const formatPrice = (monthlyPrice: number) => {
     if (monthlyPrice === 0) return "Custom";
@@ -210,31 +255,67 @@ const PricingSection = () => {
               </span>
             </div>
           </div>
+          
+          <div className="flex items-center justify-center space-x-4 mt-4 opacity-0 animate-fade-in" style={{ animationDelay: "0.15s" }}>
+            <span className={`text-sm ${!showOnPremise ? 'text-white' : 'text-muted-foreground'}`}>Cloud Services</span>
+            <div className="flex items-center">
+              <Switch
+                checked={showOnPremise}
+                onCheckedChange={setShowOnPremise}
+                className="data-[state=checked]:bg-white/90"
+              />
+            </div>
+            <span className={`text-sm ${showOnPremise ? 'text-white' : 'text-muted-foreground'}`}>On-Premise Solutions</span>
+          </div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-          {pricingPlans.map((plan) => (
-            <PricingTier
-              key={plan.id}
-              id={plan.id}
-              name={plan.name}
-              price={
-                plan.monthlyPrice === 0 ? (
-                  <span className="text-3xl font-bold text-gradient">Custom</span>
-                ) : (
+          {showOnPremise ? 
+            // Display on-premise plans in a 2-column layout
+            onPremisePlans.map((plan) => (
+              <PricingTier
+                key={plan.id}
+                id={plan.id}
+                name={plan.name}
+                price={
                   <div>
                     <span className="text-3xl font-bold text-gradient">{formatPrice(plan.monthlyPrice)}</span>
                     <span className="text-muted-foreground ml-1">{isAnnual ? "/mo, billed annually" : "/month"}</span>
                   </div>
-                )
-              }
-              description={plan.description}
-              features={plan.features}
-              primary={plan.primary}
-              delay={plan.delay}
-              cta={plan.cta}
-            />
-          ))}
+                }
+                description={plan.description}
+                features={plan.features}
+                primary={plan.primary}
+                delay={plan.delay}
+                cta={plan.cta}
+                onPremise={plan.onPremise}
+              />
+            ))
+            :
+            // Display cloud plans
+            pricingPlans.map((plan) => (
+              <PricingTier
+                key={plan.id}
+                id={plan.id}
+                name={plan.name}
+                price={
+                  plan.monthlyPrice === 0 ? (
+                    <span className="text-3xl font-bold text-gradient">Custom</span>
+                  ) : (
+                    <div>
+                      <span className="text-3xl font-bold text-gradient">{formatPrice(plan.monthlyPrice)}</span>
+                      <span className="text-muted-foreground ml-1">{isAnnual ? "/mo, billed annually" : "/month"}</span>
+                    </div>
+                  )
+                }
+                description={plan.description}
+                features={plan.features}
+                primary={plan.primary}
+                delay={plan.delay}
+                cta={plan.cta}
+              />
+            ))
+          }
         </div>
         
         <div className="mt-12 max-w-3xl mx-auto text-center opacity-0 animate-fade-in" style={{ animationDelay: "0.4s" }}>

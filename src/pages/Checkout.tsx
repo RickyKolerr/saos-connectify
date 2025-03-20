@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
@@ -17,6 +16,7 @@ type Plan = {
   monthlyPrice: number;
   annualPrice: number;
   features: string[];
+  onPremise?: boolean;
 };
 
 // Mock plans data
@@ -24,8 +24,8 @@ const plans: Plan[] = [
   {
     id: "starter",
     name: "Starter",
-    monthlyPrice: 99,
-    annualPrice: 990, // ~15% discount
+    monthlyPrice: 199,
+    annualPrice: 2029, // ~15% discount
     features: [
       "10,000 API calls per month",
       "3 AI providers",
@@ -37,8 +37,8 @@ const plans: Plan[] = [
   {
     id: "standard",
     name: "Standard",
-    monthlyPrice: 199,
-    annualPrice: 1990, // ~15% discount
+    monthlyPrice: 499,
+    annualPrice: 5089, // ~15% discount
     features: [
       "25,000 API calls per month",
       "5 AI providers",
@@ -51,8 +51,8 @@ const plans: Plan[] = [
   {
     id: "professional",
     name: "Professional",
-    monthlyPrice: 299,
-    annualPrice: 2990, // ~15% discount
+    monthlyPrice: 799,
+    annualPrice: 8149, // ~15% discount
     features: [
       "50,000 API calls per month",
       "All AI providers",
@@ -62,6 +62,38 @@ const plans: Plan[] = [
       "Custom domain",
       "Team collaboration tools"
     ]
+  },
+  {
+    id: "on-premise-standard",
+    name: "On-Premise Standard",
+    monthlyPrice: 999,
+    annualPrice: 10189, // ~15% discount
+    features: [
+      "Full platform deployment on your infrastructure",
+      "Up to 10 concurrent projects",
+      "Local AI model hosting capability",
+      "Standard implementation support",
+      "Quarterly updates",
+      "8/5 technical support"
+    ],
+    onPremise: true
+  },
+  {
+    id: "on-premise-enterprise",
+    name: "On-Premise Enterprise",
+    monthlyPrice: 1999,
+    annualPrice: 20389, // ~15% discount
+    features: [
+      "Unlimited self-hosted deployments",
+      "Unlimited concurrent projects",
+      "Custom integrations with existing systems",
+      "White-labeled solution option",
+      "Priority implementation support",
+      "Monthly updates",
+      "24/7 technical support",
+      "Compliance assistance (HIPAA, GDPR, etc.)"
+    ],
+    onPremise: true
   }
 ];
 
