@@ -8,6 +8,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider } from "./context/AuthContext";
 import { PaymentProvider } from "./context/PaymentContext";
 import AnimatedLine from "./components/AnimatedLine";
+import LogoAnimation from "./components/LogoAnimation";
 import Index from "./pages/Index";
 import Features from "./pages/Features";
 import HowItWorks from "./pages/HowItWorks";
@@ -51,6 +52,7 @@ const App = () => (
             <Toaster />
             <Sonner />
             <BrowserRouter>
+              <LogoAnimation />
               <AnimatedLine />
               <Routes>
                 <Route path="/" element={<Index />} />
