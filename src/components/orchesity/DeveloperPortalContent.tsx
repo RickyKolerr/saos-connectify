@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -272,17 +271,15 @@ const response = await orchesity.generate({
       </section>
 
       <div className="mt-12 text-center">
-        <Button 
-          variant="orchesity" 
-          className="gap-2"
-          as="a" 
+        <a 
           href="https://docs.orchesity.dev" 
           target="_blank" 
           rel="noopener noreferrer"
+          className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium bg-black text-white border border-white hover:bg-white/10 h-10 px-4 py-2"
         >
           View Full Documentation
           <ExternalLink className="h-4 w-4" />
-        </Button>
+        </a>
       </div>
     </main>
   );
