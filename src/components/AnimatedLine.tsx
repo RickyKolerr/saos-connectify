@@ -10,9 +10,9 @@ const AnimatedLine: React.FC = () => {
       
       // Calculate position based on scroll
       const scrollPercentage = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-      const translateValue = scrollPercentage * 100; // Move based on scroll percentage
+      const translateValue = 100 - scrollPercentage * 100; // Reverse direction: start at 100% and decrease
       
-      // Apply the transform to move left/right
+      // Apply the transform to move right/left
       lineRef.current.style.transform = `translateX(${translateValue}%)`;
       lineRef.current.style.opacity = Math.min(0.7 + scrollPercentage * 0.3, 1).toString();
     };
