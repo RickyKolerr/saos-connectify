@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -7,17 +7,20 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AreaChart, BarChart } from "@/components/ui/chart";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { LogOut, DownloadCloud, Zap, Wallet, Clock, AlertCircle } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const BusinessPortal = () => {
-  // Sample data for charts
+  const { toast } = useToast();
+  
+  // Sample data for charts - updated to show last 7 days
   const areaChartData = [
-    { name: "Jan", value: 240 },
-    { name: "Feb", value: 320 },
-    { name: "Mar", value: 290 },
-    { name: "Apr", value: 420 },
-    { name: "May", value: 380 },
-    { name: "Jun", value: 450 },
-    { name: "Jul", value: 560 },
+    { name: "Mon", value: 240 },
+    { name: "Tue", value: 320 },
+    { name: "Wed", value: 290 },
+    { name: "Thu", value: 420 },
+    { name: "Fri", value: 380 },
+    { name: "Sat", value: 450 },
+    { name: "Sun", value: 560 },
   ];
 
   const providersData = [
@@ -34,6 +37,26 @@ const BusinessPortal = () => {
     { id: "req_126", timestamp: "2023-06-12 14:20", provider: "OpenAI", status: "error", latency: 0, tokens: 0 },
     { id: "req_127", timestamp: "2023-06-12 14:15", provider: "Claude", status: "success", latency: 510, tokens: 630 },
   ];
+
+  // Request usage data
+  const requestUsage = {
+    used: 8720,
+    total: 10000,
+    percentage: 87.2
+  };
+
+  // Show usage alert when approaching limit
+  useEffect(() => {
+    if (requestUsage.percentage > 85) {
+      toast({
+        title: "Quota Warning",
+        description: `You've used ${requestUsage.used}/${requestUsage.total} requests (${requestUsage.percentage}%)`,
+        variant: "default",
+        className: "border border-white/20 bg-black text-white",
+        duration: 5000,
+      });
+    }
+  }, [toast]);
 
   return (
     <div className="flex flex-col min-h-screen bg-black text-white">
@@ -52,8 +75,8 @@ const BusinessPortal = () => {
       <div className="container mx-auto flex-1 py-8 px-4">
         <h1 className="text-3xl font-bold mb-6">Business Dashboard</h1>
         
-        {/* Package Info */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        {/* Package & Billing Info */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-lg">Package</CardTitle>
@@ -74,8 +97,8 @@ const BusinessPortal = () => {
               <CardTitle className="text-lg">Requests</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">8,720 / 10,000</div>
-              <Progress value={87.2} className="h-2 mt-2" />
+              <div className="text-2xl font-bold">{requestUsage.used.toLocaleString()} / {requestUsage.total.toLocaleString()}</div>
+              <Progress value={requestUsage.percentage} className="h-2 mt-2" />
               <div className="mt-2 text-sm text-white/70">Resets in 19 days</div>
             </CardContent>
           </Card>
@@ -88,6 +111,25 @@ const BusinessPortal = () => {
               <div className="text-2xl font-bold">3.2M / 5M</div>
               <Progress value={64} className="h-2 mt-2" />
               <div className="mt-2 text-sm text-white/70">Resets in 19 days</div>
+            </CardContent>
+          </Card>
+          
+          {/* New Billing Card */}
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-lg">Billing</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col space-y-2">
+                <div>
+                  <div className="font-medium text-sm text-white/70">Current Plan</div>
+                  <div className="text-2xl font-bold">Basic</div>
+                </div>
+                <div className="text-sm text-white/70">Next billing: July 1, 2023</div>
+                <Button variant="orchesity" size="sm" className="w-full mt-2">
+                  Upgrade Plan
+                </Button>
+              </div>
             </CardContent>
           </Card>
         </div>
@@ -116,6 +158,7 @@ const BusinessPortal = () => {
                       categories={["value"]}
                       colors={["white"]}
                       yAxisWidth={40}
+                      showGrid={true}
                       className="text-white/80"
                     />
                   </div>
