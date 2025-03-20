@@ -6,9 +6,11 @@ import OfflineFallback from "@/components/orchesity/OfflineFallback";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/hooks/use-toast";
+import { Button } from "@/components/ui/button";
 
 const Dashboard = () => {
   const [isOffline, setIsOffline] = useState(false);
+  const [sessionTimeoutWarning, setSessionTimeoutWarning] = useState(false);
   const { toast } = useToast();
 
   // Simulate checking backend connection
@@ -21,6 +23,38 @@ const Dashboard = () => {
     
     checkConnection();
   }, []);
+
+  // Simulate session timeout warning
+  useEffect(() => {
+    // For demo purposes, trigger the warning after 30 seconds
+    const timeoutId = setTimeout(() => {
+      setSessionTimeoutWarning(true);
+      
+      toast({
+        title: "[EN] Session Expiring Soon",
+        description: "[EN] Your session will expire in 5 minutes due to inactivity.",
+        action: (
+          <Button 
+            variant="orchesity"
+            onClick={() => {
+              toast({
+                title: "[EN] Session Extended",
+                description: "[EN] Your session has been extended.",
+                className: "border border-white/20 bg-black text-white",
+              });
+              setSessionTimeoutWarning(false);
+            }}
+            className="border border-white focus:outline-white focus:ring-2 focus:ring-white"
+          >
+            [EN] Stay Logged In
+          </Button>
+        ),
+        className: "border border-white/20 bg-black text-white",
+      });
+    }, 30000); // 30 seconds for demo
+    
+    return () => clearTimeout(timeoutId);
+  }, [toast]);
 
   const handleRetryConnection = () => {
     toast({

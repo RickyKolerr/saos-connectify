@@ -1,14 +1,39 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import OrchesityNavbar from "@/components/orchesity/OrchesityNavbar";
 import DeveloperPortal from "@/components/orchesity/DeveloperPortal";
 import OfflineFallback from "@/components/orchesity/OfflineFallback";
 import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/hooks/use-toast";
+import { AlertTriangle } from "lucide-react";
 
 const Developer = () => {
   const [isOffline, setIsOffline] = useState(false);
+  const [rateLimitWarning, setRateLimitWarning] = useState(false);
   const { toast } = useToast();
+
+  // Simulate API rate limiting
+  useEffect(() => {
+    // For demo purposes, randomly show rate limit warning
+    const showWarning = Math.random() < 0.5;
+    
+    if (showWarning) {
+      setTimeout(() => {
+        setRateLimitWarning(true);
+        
+        toast({
+          title: (
+            <div className="flex items-center gap-2 text-yellow-300">
+              <AlertTriangle className="h-4 w-4" />
+              [EN] Rate Limit Warning
+            </div>
+          ),
+          description: "[EN] Approaching API limit: 95/100 requests this hour.",
+          className: "border border-yellow-600/30 bg-black text-white",
+        });
+      }, 5000); // 5 seconds for demo
+    }
+  }, [toast]);
 
   const handleRetryConnection = () => {
     toast({

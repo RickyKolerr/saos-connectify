@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, LogOut, Circle } from "lucide-react";
+import { Menu, X, LogOut, Circle, Layers, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -56,8 +56,12 @@ const OrchesityNavbar = () => {
       <nav className="bg-black border-b border-white/10 py-3 sticky top-0 z-50">
         <div className="container mx-auto flex justify-between items-center px-4">
           <div className="flex items-center">
-            <Link to="/orchesity/dashboard" className="text-xl font-bold text-white mr-8">
-              [EN] Orchesity
+            <Link to="/orchesity/dashboard" className="text-xl font-bold text-white mr-8 flex items-center group">
+              <Layers className="h-6 w-6 mr-2 text-white group-hover:text-white/80 transition-colors" />
+              <span className="relative">
+                [EN] Orchesity
+                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-white/60 transition-all duration-300 group-hover:w-full"></span>
+              </span>
             </Link>
             
             {/* Desktop Navigation */}
@@ -67,7 +71,7 @@ const OrchesityNavbar = () => {
                   key={item.name}
                   to={item.path}
                   className={cn(
-                    "text-sm font-medium transition-colors duration-300 relative group",
+                    "text-sm font-medium transition-colors duration-300 relative group focus:outline-white focus:ring-2 focus:ring-white",
                     isActive(item.path) 
                       ? "text-white" 
                       : "text-white/80 hover:text-white"
@@ -84,6 +88,15 @@ const OrchesityNavbar = () => {
                   />
                 </Link>
               ))}
+              
+              <Link
+                to="/orchesity/help"
+                className="text-sm font-medium text-white/80 hover:text-white transition-colors duration-300 relative group focus:outline-white focus:ring-2 focus:ring-white flex items-center gap-1"
+              >
+                <HelpCircle className="h-4 w-4" />
+                [EN] Help
+                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-white/60 transition-all duration-300 group-hover:w-full"></span>
+              </Link>
             </div>
           </div>
 
@@ -113,7 +126,7 @@ const OrchesityNavbar = () => {
             <Button 
               variant="orchesity" 
               size="sm" 
-              className="hidden md:flex items-center gap-2"
+              className="hidden md:flex items-center gap-2 focus:outline-white focus:ring-2 focus:ring-white"
               onClick={handleLogout}
             >
               <LogOut className="h-4 w-4" />
@@ -124,7 +137,7 @@ const OrchesityNavbar = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden text-white"
+              className="md:hidden text-white focus:outline-white focus:ring-2 focus:ring-white"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -141,7 +154,7 @@ const OrchesityNavbar = () => {
                   key={item.name}
                   to={item.path}
                   className={cn(
-                    "py-2 px-2 text-sm font-medium transition-colors duration-300",
+                    "py-2 px-2 text-sm font-medium transition-colors duration-300 focus:outline-white focus:ring-2 focus:ring-white",
                     isActive(item.path) 
                       ? "text-white bg-white/10" 
                       : "text-white/80 hover:text-white hover:bg-white/5"
@@ -151,6 +164,16 @@ const OrchesityNavbar = () => {
                   {item.name}
                 </Link>
               ))}
+              
+              <Link
+                to="/orchesity/help"
+                className="py-2 px-2 text-sm font-medium text-white/80 hover:text-white hover:bg-white/5 transition-colors duration-300 focus:outline-white focus:ring-2 focus:ring-white flex items-center gap-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <HelpCircle className="h-4 w-4" />
+                [EN] Help
+              </Link>
+              
               <div className="pt-2 border-t border-white/10 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Circle 
@@ -166,7 +189,7 @@ const OrchesityNavbar = () => {
                 <Button 
                   variant="orchesity" 
                   size="sm" 
-                  className="flex items-center justify-center gap-2"
+                  className="flex items-center justify-center gap-2 focus:outline-white focus:ring-2 focus:ring-white"
                   onClick={handleLogout}
                 >
                   <LogOut className="h-4 w-4" />
@@ -191,13 +214,14 @@ const OrchesityNavbar = () => {
             <Button 
               variant="outline" 
               onClick={() => setShowLogoutDialog(false)}
-              className="border-white/40 text-white hover:bg-white/10"
+              className="border-white/40 text-white hover:bg-white/10 focus:outline-white focus:ring-2 focus:ring-white"
             >
               [EN] No, Cancel
             </Button>
             <Button 
               variant="orchesity" 
               onClick={confirmLogout}
+              className="focus:outline-white focus:ring-2 focus:ring-white"
             >
               [EN] Yes, Logout
             </Button>

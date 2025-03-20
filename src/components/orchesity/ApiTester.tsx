@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Copy, Send, AlertTriangle, Check } from "lucide-react";
+import { Copy, Send, AlertTriangle, Check, AlertCircle } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -21,10 +21,34 @@ const ApiTester = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [responseStatus, setResponseStatus] = useState<"success" | "error" | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
+  const [rateLimit, setRateLimit] = useState({ current: 95, max: 100 });
   const { toast } = useToast();
 
   const handleSendRequest = () => {
+    if (apiKey.trim() === "") {
+      toast({
+        title: "[EN] API Key Required",
+        description: "[EN] Please enter your API key to make authenticated requests.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setIsLoading(true);
+    
+    // Check rate limits first
+    if (rateLimit.current >= rateLimit.max * 0.95) {
+      toast({
+        title: (
+          <div className="flex items-center gap-2 text-yellow-300">
+            <AlertTriangle className="h-4 w-4" />
+            [EN] Rate Limit Warning
+          </div>
+        ),
+        description: `[EN] Approaching API limit: ${rateLimit.current}/${rateLimit.max} requests this hour.`,
+        className: "border border-yellow-600/30 bg-black text-white",
+      });
+    }
     
     // Simulate API request
     setTimeout(() => {
@@ -46,6 +70,9 @@ const ApiTester = () => {
         setResponse(JSON.stringify(sampleResponse, null, 2));
         setResponseStatus("success");
         setErrorMessage("");
+        
+        // Increase rate limit counter
+        setRateLimit(prev => ({ ...prev, current: Math.min(prev.current + 1, prev.max) }));
       } else {
         // Simulate different error types
         const errorTypes = [
@@ -86,6 +113,15 @@ const ApiTester = () => {
     <div className="border border-white/10 rounded-lg p-6 mb-8">
       <h3 className="text-lg font-medium mb-4">[EN] Try it yourself</h3>
       
+      {rateLimit.current >= rateLimit.max * 0.9 && (
+        <div className="mb-4 p-3 border border-yellow-600/30 rounded-md bg-yellow-900/10 flex items-center gap-2">
+          <AlertCircle className="h-5 w-5 text-yellow-300" />
+          <span className="text-yellow-300 text-sm">
+            [EN] Approaching rate limit: {rateLimit.current}/{rateLimit.max} requests this hour
+          </span>
+        </div>
+      )}
+      
       <div className="mb-4 space-y-4">
         <div>
           <Label className="block text-sm text-white/80 mb-2" htmlFor="api-key">[EN] API Key</Label>
@@ -94,9 +130,10 @@ const ApiTester = () => {
             value={apiKey}
             onChange={(e) => setApiKey(e.target.value)}
             placeholder="[EN] Enter your API key for authenticated testing"
-            className="font-mono text-sm"
+            className="font-mono text-sm focus:outline-white focus:ring-2 focus:ring-white"
             type="password"
           />
+          <p className="mt-1 text-xs text-white/60">[EN] Format: xai-1234-abcd-5678-efgh</p>
         </div>
         
         <div>
@@ -105,14 +142,14 @@ const ApiTester = () => {
             id="request-payload"
             value={payload}
             onChange={(e) => setPayload(e.target.value)}
-            className="font-mono text-sm mb-4 min-h-32"
+            className="font-mono text-sm mb-4 min-h-32 focus:outline-white focus:ring-2 focus:ring-white"
           />
         </div>
         
         <Button 
           onClick={handleSendRequest} 
           variant="orchesity"
-          className="w-full md:w-auto"
+          className="w-full md:w-auto focus:outline-white focus:ring-2 focus:ring-white"
           disabled={isLoading}
         >
           {isLoading ? (
@@ -148,7 +185,7 @@ const ApiTester = () => {
             <Button 
               variant="ghost" 
               size="sm" 
-              className="text-white/70 hover:text-white"
+              className="text-white/70 hover:text-white focus:outline-white focus:ring-2 focus:ring-white"
               onClick={copyResponse}
             >
               <Copy className="h-3.5 w-3.5 mr-1" />

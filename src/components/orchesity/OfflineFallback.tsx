@@ -20,7 +20,7 @@ const OfflineFallback = ({ onRetry }: OfflineFallbackProps) => {
         <Button 
           variant="orchesity" 
           onClick={onRetry}
-          className="px-6 py-2"
+          className="px-6 py-2 focus:outline-white focus:ring-2 focus:ring-white"
         >
           <RefreshCcw className="h-4 w-4 mr-2" />
           [EN] Retry Connection
