@@ -6,7 +6,7 @@ type User = {
   email: string;
   name: string | null;
   photoUrl?: string;
-  provider?: "email" | "google" | "github" | "openai";
+  provider?: "email" | "google" | "github" | "openai" | "xai";
   userType?: "business" | "developer";
 };
 
@@ -116,19 +116,19 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setLoading(true);
     setError(null);
     try {
-      // Mock successful GitHub auth - replace with real auth logic
+      // Mock successful xAI auth - replace with real auth logic
       const mockUser: User = {
-        id: "github-" + Math.random().toString(36).substr(2, 9),
-        email: "user@github.com",
-        name: "GitHub User",
-        photoUrl: "https://avatars.githubusercontent.com/u/default",
-        provider: "github"
+        id: "xai-" + Math.random().toString(36).substr(2, 9),
+        email: "user@xai.com",
+        name: "xAI User",
+        photoUrl: "https://avatars.xai.com/u/default",
+        provider: "xai"
       };
       
       localStorage.setItem("user", JSON.stringify(mockUser));
       setUser(mockUser);
     } catch (err) {
-      setError("Failed to sign in with GitHub");
+      setError("Failed to sign in with xAI");
       throw err;
     } finally {
       setLoading(false);
