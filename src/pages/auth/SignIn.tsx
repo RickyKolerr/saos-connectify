@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -146,24 +145,13 @@ const SignIn = () => {
               
               <Button 
                 variant="outline" 
-                className="w-full bg-white hover:bg-gray-100 text-black border border-gray-300" 
+                className="w-full bg-white hover:bg-gray-100 text-black border border-gray-300 flex items-center justify-center" 
                 type="button" 
                 disabled={isLoading}
                 onClick={handleXAISignIn}
               >
-                <svg
-                  className="mr-2 h-4 w-4"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 1000 1000"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path 
-                    d="M381.98 276L500 426.44 618.97 276H735.3L559.89 496.79 745.33 724H628.06L500 561.15 371.94 724H254.67L440.11 496.79 264.79 276H381.98Z" 
-                    fill="black"
-                  />
-                </svg>
-                xAI
+                <span className="mr-1 font-bold">x</span>
+                <span>xAI</span>
               </Button>
 
               <Button 
