@@ -1,3 +1,4 @@
+
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 type User = {
@@ -6,6 +7,7 @@ type User = {
   name: string | null;
   photoUrl?: string;
   provider?: "email" | "google" | "github" | "openai";
+  userType?: "business" | "developer";
 };
 
 type AuthContextType = {
@@ -47,7 +49,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       try {
         const storedUser = localStorage.getItem("user");
         if (storedUser) {
-          setUser(JSON.parse(storedUser));
+          const parsedUser = JSON.parse(storedUser);
+          // Try to get user type from localStorage if it exists
+          const userType = localStorage.getItem("userType");
+          if (userType && (userType === "business" || userType === "developer")) {
+            parsedUser.userType = userType;
+          }
+          setUser(parsedUser);
         }
       } catch (err) {
         console.error("Failed to restore session:", err);
@@ -154,12 +162,16 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setLoading(true);
     setError(null);
     try {
+      // Get the user type from localStorage
+      const userType = localStorage.getItem("userType") as "business" | "developer" | null;
+      
       // Mock successful signup - replace with real auth logic
       const mockUser: User = {
         id: "user-" + Math.random().toString(36).substr(2, 9),
         email,
         name: name || email.split("@")[0],
-        provider: "email"
+        provider: "email",
+        userType: userType || undefined
       };
       
       localStorage.setItem("user", JSON.stringify(mockUser));
