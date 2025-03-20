@@ -13,7 +13,6 @@ import {
   Minimize2, 
   Maximize2
 } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 
 type Message = {
   content: string;
@@ -33,7 +32,6 @@ const ChatInterface = () => {
   ]);
   const [inputMessage, setInputMessage] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const { toast } = useToast();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -108,10 +106,7 @@ const ChatInterface = () => {
     if (!isOpen) {
       setIsOpen(true);
       setIsMinimized(false);
-      toast({
-        title: "Chat activated",
-        description: "Welcome to ORCHESITY AI Assistant",
-      });
+      // Toast notification removed
     } else if (!isMinimized) {
       setIsMinimized(true);
     } else {
@@ -121,10 +116,7 @@ const ChatInterface = () => {
 
   const closeChat = () => {
     setIsOpen(false);
-    toast({
-      title: "Chat closed",
-      description: "You can reopen chat anytime",
-    });
+    // Toast notification removed
   };
 
   return (
