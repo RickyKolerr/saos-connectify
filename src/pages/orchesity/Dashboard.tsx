@@ -3,6 +3,7 @@ import React from "react";
 import SetupWizard from "@/components/orchesity/SetupWizard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Toaster } from "@/components/ui/toaster";
 
 const Dashboard = () => {
   return (
@@ -38,6 +39,8 @@ const Dashboard = () => {
           </div>
         </div>
       </footer>
+      
+      <Toaster />
     </div>
   );
 };
