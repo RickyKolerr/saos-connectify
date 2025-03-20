@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -69,7 +68,7 @@ const SignIn = () => {
   const handleXAISignIn = async () => {
     setIsLoading(true);
     try {
-      await signInWithGitHub(); // Still using the GitHub auth method but displaying as xAI
+      await signInWithGitHub();
       navigate("/");
     } catch (error) {
       console.error(error);
@@ -112,7 +111,6 @@ const SignIn = () => {
             )}
             
             <div className="grid grid-cols-3 gap-2">
-              {/* Google button with correct brand colors */}
               <Button 
                 variant="outline" 
                 className="w-full bg-white hover:bg-gray-100 text-gray-800 border border-gray-300" 
@@ -145,7 +143,6 @@ const SignIn = () => {
                 Google
               </Button>
               
-              {/* xAI button (replacing GitHub) */}
               <Button 
                 variant="outline" 
                 className="w-full bg-black hover:bg-gray-900 text-white border-gray-800" 
@@ -155,36 +152,25 @@ const SignIn = () => {
               >
                 <svg
                   className="mr-2 h-4 w-4"
-                  viewBox="0 0 24 24"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 1000 1000"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M12 2L2 7L12 12L22 7L12 2Z"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                    d="M731.7 999.5H268.3c-145.9 0-268.3-122.4-268.3-268.3V268.3C0 122.4 122.4 0 268.3 0h463.4C877.6 0 1000 122.4 1000 268.3v463.4c0 145.4-122.4 267.8-268.3 267.8z"
+                    fill="#000"
                   />
                   <path
-                    d="M2 17L12 22L22 17"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M2 12L12 17L22 12"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                    d="M500 159.4L794.4 840H205.6L500 159.4z"
+                    stroke="#fff"
+                    strokeWidth="28"
                   />
                 </svg>
                 xAI
               </Button>
 
-              {/* OpenAI button with correct brand colors and logo */}
               <Button 
                 variant="outline" 
                 className="w-full bg-white hover:bg-gray-100 text-black border border-gray-300" 
