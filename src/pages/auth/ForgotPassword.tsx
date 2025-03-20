@@ -51,6 +51,11 @@ const ForgotPassword = () => {
     }
   };
 
+  const handleSendAgain = () => {
+    form.reset();
+    setIsEmailSent(false);
+  };
+
   return (
     <>
       <Helmet>
@@ -94,7 +99,7 @@ const ForgotPassword = () => {
                   type="button" 
                   variant="outline" 
                   className="w-full mt-4"
-                  onClick={() => form.reset() || setIsEmailSent(false)}
+                  onClick={handleSendAgain}
                 >
                   Send again
                 </Button>
