@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -150,8 +151,12 @@ const SignIn = () => {
                 disabled={isLoading}
                 onClick={handleXAISignIn}
               >
-                <span className="mr-1 font-bold">x</span>
-                <span>xAI</span>
+                <img 
+                  src="/lovable-uploads/2d9ce61e-4629-4343-a7bd-71cbf50beacd.png" 
+                  alt="xAI Logo" 
+                  className="h-4 w-4 mr-2"
+                />
+                xAI
               </Button>
 
               <Button 
