@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/card";
 import { 
   CreditCard, 
-  PaypalIcon,
+  DollarSign,
   Check,
   Info,
   ChevronRight
