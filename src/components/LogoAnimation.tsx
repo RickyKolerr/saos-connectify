@@ -92,79 +92,53 @@ const LogoAnimation = () => {
         
         {/* Main logo shapes animation with shimmer effect */}
         <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
-          {/* Glowing backdrop for top hexagon */}
-          <motion.path 
-            d="M64 16 L88 30 L88 58 L64 72 L40 58 L40 30 Z" 
-            fill="none"
-            stroke="rgba(255,255,255,0.3)"
-            strokeWidth="2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3, delay: 0.2 }}
-            className="filter blur-[4px]"
-          />
+          {/* Create a circular clipping mask */}
+          <defs>
+            <clipPath id="circleClip">
+              <circle cx="64" cy="64" r="64" />
+            </clipPath>
+          </defs>
           
-          {/* Top hexagon */}
-          <motion.path 
-            d="M64 16 L88 30 L88 58 L64 72 L40 58 L40 30 Z" 
-            fill="white"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-          />
-          
-          {/* Glowing backdrop for middle triangle */}
-          <motion.path 
-            d="M64 42 L94 87 L34 87 Z" 
-            fill="none"
-            stroke="rgba(255,255,255,0.3)"
-            strokeWidth="2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3, delay: 0.7 }}
-            className="filter blur-[4px]"
-          />
-          
-          {/* Middle triangle */}
-          <motion.path 
-            d="M64 42 L94 87 L34 87 Z" 
-            fill="white"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.8 }}
-          />
-          
-          {/* Glowing backdrop for bottom circle */}
-          <motion.circle 
-            cx="64" 
-            cy="102" 
-            r="18" 
-            fill="none"
-            stroke="rgba(255,255,255,0.3)"
-            strokeWidth="2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3, delay: 1.2 }}
-            className="filter blur-[4px]"
-          />
-          
-          {/* Bottom circle */}
-          <motion.circle 
-            cx="64" 
-            cy="102" 
-            r="18" 
-            fill="white"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 1.3 }}
-          />
+          {/* Logo group with clipping mask applied */}
+          <g clipPath="url(#circleClip)">
+            {/* Infinity-like shape */}
+            <motion.path
+              d="M35,64 C35,50 45,50 55,60 C65,70 75,70 75,64 C75,58 65,58 55,48 C45,38 35,38 35,52 Z"
+              fill="none"
+              stroke="white"
+              strokeWidth="4"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{ duration: 1.5, delay: 0.5 }}
+            />
+            
+            <motion.path
+              d="M93,64 C93,78 83,78 73,68 C63,58 53,58 53,64 C53,70 63,70 73,80 C83,90 93,90 93,76 Z"
+              fill="none"
+              stroke="white"
+              strokeWidth="4"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{ duration: 1.5, delay: 0.8 }}
+            />
+            
+            {/* Center circle */}
+            <motion.circle
+              cx="64"
+              cy="64"
+              r="8"
+              fill="white"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 1.5 }}
+            />
+          </g>
           
           {/* Shimmer effect overlay */}
-          <motion.rect
-            x="0"
-            y="0"
-            width="128"
-            height="128"
+          <motion.circle
+            cx="64"
+            cy="64"
+            r="64"
             fill="url(#shimmer)"
             initial={{ opacity: 0 }}
             animate={{ opacity: [0, 0.5, 0] }}
