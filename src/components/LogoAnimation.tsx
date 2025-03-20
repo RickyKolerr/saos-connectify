@@ -24,40 +24,20 @@ const LogoAnimation = () => {
       transition={{ duration: 0.5, delay: 2.5 }}
       className="fixed inset-0 flex items-center justify-center bg-black z-[100]"
     >
-      {/* Logo mark animation - only show the triangles */}
-      <div className="relative w-24 h-24">
-        {[0, 1, 2].map((index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.5,
-              delay: 0.2 * index,
-              ease: "easeOut"
-            }}
-            className="absolute"
-            style={{ top: index * 16 }}
-          >
-            <motion.svg 
-              width="96" 
-              height="24" 
-              viewBox="0 0 64 16" 
-              fill="none" 
-              xmlns="http://www.w3.org/2000/svg"
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              transition={{ 
-                duration: 0.5, 
-                delay: 0.2 * index + 0.2,
-                ease: "easeOut" 
-              }}
-            >
-              <path d="M32 0L64 16H0L32 0Z" fill="white" />
-            </motion.svg>
-          </motion.div>
-        ))}
-      </div>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <motion.img
+          src="/lovable-uploads/5f1d099d-fdf0-4de1-aae0-88b2d46418c3.png"
+          alt="ORCHESITY"
+          className="h-24"
+          initial={{ filter: "blur(8px)" }}
+          animate={{ filter: "blur(0px)" }}
+          transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+        />
+      </motion.div>
     </motion.div>
   );
 };
