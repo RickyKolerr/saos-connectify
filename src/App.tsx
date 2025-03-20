@@ -6,11 +6,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider } from "./context/AuthContext";
+import { PaymentProvider } from "./context/PaymentContext";
 import Index from "./pages/Index";
 import Features from "./pages/Features";
 import HowItWorks from "./pages/HowItWorks";
 import Benefits from "./pages/Benefits";
 import Pricing from "./pages/Pricing";
+import Checkout from "./pages/Checkout";
+import Billing from "./pages/Billing";
 import Documentation from "./pages/Documentation";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -34,37 +37,41 @@ const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/features" element={<Features />} />
-              <Route path="/how-it-works" element={<HowItWorks />} />
-              <Route path="/benefits" element={<Benefits />} />
-              <Route path="/pricing" element={<Pricing />} />
-              <Route path="/documentation" element={<Documentation />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/careers" element={<Careers />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/api-reference" element={<ApiReference />} />
-              <Route path="/developer-program" element={<DeveloperProgram />} />
-              <Route path="/status" element={<Status />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/terms-of-service" element={<TermsOfService />} />
-              {/* Auth Routes */}
-              <Route path="/auth/signin" element={<SignIn />} />
-              <Route path="/auth/signup" element={<SignUp />} />
-              <Route path="/auth/forgot-password" element={<ForgotPassword />} />
-              <Route path="/auth/reset-password" element={<ResetPassword />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-            <ChatInterface />
-          </BrowserRouter>
-        </TooltipProvider>
+        <PaymentProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/features" element={<Features />} />
+                <Route path="/how-it-works" element={<HowItWorks />} />
+                <Route path="/benefits" element={<Benefits />} />
+                <Route path="/pricing" element={<Pricing />} />
+                <Route path="/checkout/:planId" element={<Checkout />} />
+                <Route path="/billing" element={<Billing />} />
+                <Route path="/documentation" element={<Documentation />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/careers" element={<Careers />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/api-reference" element={<ApiReference />} />
+                <Route path="/developer-program" element={<DeveloperProgram />} />
+                <Route path="/status" element={<Status />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/terms-of-service" element={<TermsOfService />} />
+                {/* Auth Routes */}
+                <Route path="/auth/signin" element={<SignIn />} />
+                <Route path="/auth/signup" element={<SignUp />} />
+                <Route path="/auth/forgot-password" element={<ForgotPassword />} />
+                <Route path="/auth/reset-password" element={<ResetPassword />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+              <ChatInterface />
+            </BrowserRouter>
+          </TooltipProvider>
+        </PaymentProvider>
       </AuthProvider>
     </QueryClientProvider>
   </HelmetProvider>

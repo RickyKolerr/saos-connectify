@@ -1,6 +1,7 @@
 
 import { Check } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Switch } from "@/components/ui/switch";
@@ -88,6 +89,7 @@ const pricingPlans: PricingPlan[] = [
 ];
 
 const PricingTier = ({ 
+  id,
   name, 
   price, 
   description, 
@@ -96,6 +98,7 @@ const PricingTier = ({
   delay,
   cta
 }: { 
+  id: string;
   name: string; 
   price: string | React.ReactNode; 
   description: string; 
@@ -147,8 +150,17 @@ const PricingTier = ({
         className={`w-full ${primary 
           ? 'bg-white hover:bg-white/90 hover:shadow-[0_0_15px_rgba(255,255,255,0.3)] text-black' 
           : 'bg-background/50 hover:bg-background/70 text-foreground border border-border hover:border-white/30'} transition-all duration-300`}
+        asChild
       >
-        {cta}
+        {id === "enterprise" ? (
+          <Link to="/contact">
+            {cta}
+          </Link>
+        ) : (
+          <Link to={`/checkout/${id}`}>
+            {cta}
+          </Link>
+        )}
       </Button>
     </div>
   </Card>
@@ -204,6 +216,7 @@ const PricingSection = () => {
           {pricingPlans.map((plan) => (
             <PricingTier
               key={plan.id}
+              id={plan.id}
               name={plan.name}
               price={
                 plan.monthlyPrice === 0 ? (
@@ -230,8 +243,8 @@ const PricingSection = () => {
           </p>
           <HoverCard>
             <HoverCardTrigger asChild>
-              <Button variant="outline" className="mx-auto border-border text-foreground hover:border-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all duration-300">
-                Contact Sales
+              <Button variant="outline" className="mx-auto border-border text-foreground hover:border-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all duration-300" asChild>
+                <Link to="/contact">Contact Sales</Link>
               </Button>
             </HoverCardTrigger>
             <HoverCardContent className="bg-background/80 backdrop-blur-md border border-white/20">
