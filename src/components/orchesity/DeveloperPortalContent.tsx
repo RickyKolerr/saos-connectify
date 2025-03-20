@@ -2,7 +2,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Copy, ChevronRight, Download } from "lucide-react";
+import { Copy, ChevronRight, Download, ExternalLink } from "lucide-react";
 import ApiTester from "./ApiTester";
 import { useToast } from "@/hooks/use-toast";
 
@@ -63,14 +63,26 @@ echo "Orchesity is now running at http://localhost:3000"`;
               </Button>
             </div>
             
-            <Button 
-              variant="orchesity" 
-              className="gap-2 mb-6"
-              onClick={handleDownload}
-            >
-              <Download className="h-4 w-4" />
-              Download Setup Script
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 items-start mb-6">
+              <Button 
+                variant="orchesity" 
+                className="gap-2"
+                onClick={handleDownload}
+              >
+                <Download className="h-4 w-4" />
+                Download Setup Script
+              </Button>
+              
+              <a 
+                href="https://github.com/orchesity/docs" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 text-white hover:underline"
+              >
+                Read full documentation
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            </div>
 
             <h3 className="text-lg font-medium mb-3">Usage</h3>
             <div className="relative">
@@ -260,9 +272,16 @@ const response = await orchesity.generate({
       </section>
 
       <div className="mt-12 text-center">
-        <Button variant="orchesity" className="gap-2">
+        <Button 
+          variant="orchesity" 
+          className="gap-2"
+          as="a" 
+          href="https://docs.orchesity.dev" 
+          target="_blank" 
+          rel="noopener noreferrer"
+        >
           View Full Documentation
-          <ChevronRight className="h-4 w-4" />
+          <ExternalLink className="h-4 w-4" />
         </Button>
       </div>
     </main>
