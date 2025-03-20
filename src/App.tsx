@@ -41,6 +41,11 @@ import Scalability from "./pages/docs/Scalability";
 import SecurityBestPractices from "./pages/docs/SecurityBestPractices";
 import MonitoringAnalytics from "./pages/docs/MonitoringAnalytics";
 
+// Orchesity Pages
+import OrchesityDashboard from "./pages/orchesity/Dashboard";
+import OrchesityDeveloper from "./pages/orchesity/Developer";
+import OrchesityBusiness from "./pages/orchesity/Business";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -86,6 +91,12 @@ const App = () => (
                 <Route path="/documentation/scalability" element={<Scalability />} />
                 <Route path="/documentation/security" element={<SecurityBestPractices />} />
                 <Route path="/documentation/monitoring" element={<MonitoringAnalytics />} />
+                
+                {/* Orchesity Routes */}
+                <Route path="/orchesity/dashboard" element={<OrchesityDashboard />} />
+                <Route path="/orchesity/developer" element={<OrchesityDeveloper />} />
+                <Route path="/orchesity/business" element={<OrchesityBusiness />} />
+                
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
