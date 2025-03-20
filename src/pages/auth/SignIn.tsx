@@ -145,20 +145,23 @@ const SignIn = () => {
               
               <Button 
                 variant="outline" 
-                className="w-full bg-black hover:bg-gray-900 text-white border-gray-800" 
+                className="w-full bg-black hover:bg-gray-900 text-white border border-gray-800" 
                 type="button" 
                 disabled={isLoading}
                 onClick={handleXAISignIn}
               >
                 <svg
-                  className="mr-2 h-4 w-4"
+                  className="mr-2 h-4 w-4 text-white"
                   width="16"
                   height="16"
                   viewBox="0 0 1000 1000"
-                  fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path d="M561.7 712.7h94.8L423.6 287.3h-97.1l-230.8 425.4h94.9l58.9-111.2h263.3l48.9 111.2zm-273.9-189.6l104-198.4 92.2 198.4H287.8z" />
+                  <rect width="1000" height="1000" fill="#000000" />
+                  <path 
+                    d="M561.7 712.7h94.8L423.6 287.3h-97.1l-230.8 425.4h94.9l58.9-111.2h263.3l48.9 111.2zm-273.9-189.6l104-198.4 92.2 198.4H287.8z" 
+                    fill="white"
+                  />
                 </svg>
                 xAI
               </Button>
