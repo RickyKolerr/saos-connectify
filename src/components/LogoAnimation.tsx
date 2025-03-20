@@ -24,40 +24,43 @@ const LogoAnimation = () => {
       transition={{ duration: 0.5, delay: 2.5 }}
       className="fixed inset-0 flex items-center justify-center bg-black z-[100]"
     >
-      {/* Logo mark animation - only show the triangles */}
-      <div className="relative w-24 h-24">
-        {[0, 1, 2].map((index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.5,
-              delay: 0.2 * index,
-              ease: "easeOut"
-            }}
-            className="absolute"
-            style={{ top: index * 16 }}
-          >
-            <motion.svg 
-              width="96" 
-              height="24" 
-              viewBox="0 0 64 16" 
-              fill="none" 
-              xmlns="http://www.w3.org/2000/svg"
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              transition={{ 
-                duration: 0.5, 
-                delay: 0.2 * index + 0.2,
-                ease: "easeOut" 
-              }}
-            >
-              <path d="M32 0L64 16H0L32 0Z" fill="white" />
-            </motion.svg>
-          </motion.div>
-        ))}
-      </div>
+      <motion.div
+        initial={{ scale: 0, rotate: -180 }}
+        animate={{ scale: 1, rotate: 0 }}
+        transition={{
+          duration: 1.2,
+          ease: [0.34, 1.56, 0.64, 1], // Custom spring-like bounce effect
+        }}
+        className="relative w-32 h-32 flex items-center justify-center"
+      >
+        {/* Logo mark animation with staggered triangle reveal */}
+        <svg width="128" height="128" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+          {/* First triangle */}
+          <motion.path 
+            d="M32 8L48 32H16L32 8Z" 
+            fill="white"
+            initial={{ opacity: 0, pathLength: 0 }}
+            animate={{ opacity: 1, pathLength: 1 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+          />
+          {/* Second triangle */}
+          <motion.path 
+            d="M32 24L48 48H16L32 24Z" 
+            fill="white"
+            initial={{ opacity: 0, pathLength: 0 }}
+            animate={{ opacity: 1, pathLength: 1 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+          />
+          {/* Third triangle */}
+          <motion.path 
+            d="M32 40L48 64H16L32 40Z" 
+            fill="white"
+            initial={{ opacity: 0, pathLength: 0 }}
+            animate={{ opacity: 1, pathLength: 1 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+          />
+        </svg>
+      </motion.div>
     </motion.div>
   );
 };
