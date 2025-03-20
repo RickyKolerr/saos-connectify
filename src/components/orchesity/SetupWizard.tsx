@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -43,13 +42,9 @@ const SetupWizard = () => {
 
   const handleNext = async () => {
     if (step === 1) {
-      // Validate API key
       setIsLoading(true);
       try {
-        // Simulate API key validation with a timeout
         await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        // For demo purposes, fail if the key is too short
         if (apiKey.length < 3) {
           toast({
             title: "Invalid API Key",
@@ -58,7 +53,6 @@ const SetupWizard = () => {
           });
           return;
         }
-        
         setStep(2);
       } catch (error) {
         toast({
@@ -70,7 +64,6 @@ const SetupWizard = () => {
         setIsLoading(false);
       }
     } else if (step === 2) {
-      // Validate project details
       if (!projectName.trim()) {
         toast({
           title: "Missing Information",
@@ -81,7 +74,6 @@ const SetupWizard = () => {
       }
       setStep(3);
     } else if (step === 3) {
-      // Show confirmation dialog before activation
       setShowConfirmDialog(true);
     }
   };
@@ -90,17 +82,13 @@ const SetupWizard = () => {
     setShowConfirmDialog(false);
     setIsLoading(true);
     try {
-      // Simulate Redis activation
       await new Promise(resolve => setTimeout(resolve, 1500));
       setEndpointUrl(`https://api.orchesity.com/v1/${projectName.toLowerCase().replace(/\s+/g, '-')}`);
       setSetupComplete(true);
-
-      // Show success toast
       toast({
         title: "Setup Completed!",
         description: "Your endpoint is ready for use.",
         className: "border border-white/20 bg-black text-white",
-        icon: <Sparkle className="h-4 w-4 text-white" />,
         duration: 3000,
       });
     } catch (error) {
@@ -131,7 +119,6 @@ const SetupWizard = () => {
 
   const saveSettings = () => {
     setIsLoading(true);
-    // Simulate saving settings
     setTimeout(() => {
       setIsLoading(false);
       toast({
@@ -464,3 +451,4 @@ const SetupWizard = () => {
 };
 
 export default SetupWizard;
+
