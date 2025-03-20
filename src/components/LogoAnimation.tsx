@@ -24,18 +24,40 @@ const LogoAnimation = () => {
       transition={{ duration: 0.5, delay: 2.5 }}
       className="fixed inset-0 flex items-center justify-center bg-black z-[100]"
     >
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="w-24 h-24 relative"
-      >
-        <img 
-          src="/lovable-uploads/9a9d92f6-585a-449a-87c8-0f490eceb6de.png" 
-          alt="Orchesity Logo" 
-          className="w-full h-full object-contain"
-        />
-      </motion.div>
+      {/* Logo mark animation - only show the triangles */}
+      <div className="relative w-24 h-24">
+        {[0, 1, 2].map((index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.5,
+              delay: 0.2 * index,
+              ease: "easeOut"
+            }}
+            className="absolute"
+            style={{ top: index * 16 }}
+          >
+            <motion.svg 
+              width="96" 
+              height="24" 
+              viewBox="0 0 64 16" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              transition={{ 
+                duration: 0.5, 
+                delay: 0.2 * index + 0.2,
+                ease: "easeOut" 
+              }}
+            >
+              <path d="M32 0L64 16H0L32 0Z" fill="white" />
+            </motion.svg>
+          </motion.div>
+        ))}
+      </div>
     </motion.div>
   );
 };
