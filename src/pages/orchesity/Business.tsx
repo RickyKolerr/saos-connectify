@@ -28,7 +28,7 @@ const Business = () => {
         toast({
           title: "[EN] Connected",
           description: "[EN] Successfully reconnected to the Orchesity backend.",
-          className: "border border-white/20 bg-black text-white",
+          className: "border border-black/20 bg-white text-black",
         });
       } else {
         toast({
@@ -41,7 +41,7 @@ const Business = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-white text-black">
       <OrchesityNavbar />
       <main className="container mx-auto py-8 px-4">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
@@ -52,10 +52,10 @@ const Business = () => {
             onValueChange={setCurrentProject}
             defaultValue="default"
           >
-            <SelectTrigger className="w-[200px] bg-black border-white/20 focus:outline-white focus:ring-2 focus:ring-white">
+            <SelectTrigger className="w-[200px] bg-white border-black/20 focus:outline-black focus:ring-2 focus:ring-black">
               <SelectValue placeholder="[EN] Select Project" />
             </SelectTrigger>
-            <SelectContent className="bg-black border-white/20 text-white">
+            <SelectContent className="bg-white border-black/20 text-black">
               <SelectItem value="default">[EN] Default Project</SelectItem>
               <SelectItem value="project1">[EN] AI Chatbot</SelectItem>
               <SelectItem value="project2">[EN] Content Generator</SelectItem>
