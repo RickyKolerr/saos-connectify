@@ -7,9 +7,19 @@ import { Progress } from "@/components/ui/progress";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { ArrowLeft, ArrowRight, Check, Copy, Loader2, Settings } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Copy, Loader2, Settings, AlertCircle, Sparkle } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
+import { 
+  AlertDialog, 
+  AlertDialogAction, 
+  AlertDialogCancel, 
+  AlertDialogContent, 
+  AlertDialogDescription, 
+  AlertDialogFooter, 
+  AlertDialogHeader, 
+  AlertDialogTitle 
+} from "@/components/ui/alert-dialog";
 
 const SetupWizard = () => {
   const [step, setStep] = useState(1);
@@ -20,8 +30,16 @@ const SetupWizard = () => {
   const [endpointUrl, setEndpointUrl] = useState("https://api.orchesity.com/v1/your-project-id");
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("config");
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const isMobile = useIsMobile();
   const { toast } = useToast();
+
+  const getProviderName = () => {
+    if (apiKey.includes("grok")) return "Grok";
+    if (apiKey.includes("openai")) return "OpenAI";
+    if (apiKey.includes("claude")) return "Claude";
+    return "Unknown Provider";
+  };
 
   const handleNext = async () => {
     if (step === 1) {
@@ -63,22 +81,36 @@ const SetupWizard = () => {
       }
       setStep(3);
     } else if (step === 3) {
-      // Complete setup
-      setIsLoading(true);
-      try {
-        // Simulate Redis activation
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        setEndpointUrl(`https://api.orchesity.com/v1/${projectName.toLowerCase().replace(/\s+/g, '-')}`);
-        setSetupComplete(true);
-      } catch (error) {
-        toast({
-          title: "Activation Failed",
-          description: "Failed to activate Redis. Please try again.",
-          variant: "destructive",
-        });
-      } finally {
-        setIsLoading(false);
-      }
+      // Show confirmation dialog before activation
+      setShowConfirmDialog(true);
+    }
+  };
+
+  const handleActivateRedis = async () => {
+    setShowConfirmDialog(false);
+    setIsLoading(true);
+    try {
+      // Simulate Redis activation
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      setEndpointUrl(`https://api.orchesity.com/v1/${projectName.toLowerCase().replace(/\s+/g, '-')}`);
+      setSetupComplete(true);
+
+      // Show success toast
+      toast({
+        title: "Setup Completed!",
+        description: "Your endpoint is ready for use.",
+        className: "border border-white/20 bg-black text-white",
+        icon: <Sparkle className="h-4 w-4 text-white" />,
+        duration: 3000,
+      });
+    } catch (error) {
+      toast({
+        title: "Activation Failed",
+        description: "Failed to activate Redis. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -93,6 +125,7 @@ const SetupWizard = () => {
     toast({
       title: "Copied!",
       description: "API endpoint copied to clipboard.",
+      className: "border border-white/20 bg-black text-white",
     });
   };
 
@@ -104,6 +137,7 @@ const SetupWizard = () => {
       toast({
         title: "Settings Saved",
         description: "Your changes have been saved successfully.",
+        className: "border border-white/20 bg-black text-white",
       });
     }, 1000);
   };
@@ -164,7 +198,7 @@ const SetupWizard = () => {
             <Button 
               variant="orchesity" 
               className="w-full relative"
-              onClick={() => setEndpointUrl(`https://api.orchesity.com/v1/${projectName.toLowerCase().replace(/\s+/g, '-')}`)}
+              onClick={handleNext}
               disabled={isLoading}
             >
               {isLoading ? (
@@ -268,58 +302,80 @@ const SetupWizard = () => {
             </TabsContent>
             
             <TabsContent value="settings" className="mt-4">
-              <div className="space-y-4 bg-black/50 border border-white/10 rounded-md p-4">
-                <div className="space-y-2">
-                  <Label htmlFor="edit-api-key" className="text-white">API Key</Label>
-                  <Input
-                    id="edit-api-key"
-                    value={apiKey}
-                    onChange={(e) => setApiKey(e.target.value)}
-                    placeholder="Enter your AI provider API key"
-                    disabled={isLoading}
-                  />
+              <div className="space-y-4">
+                <div className="rounded-md border border-white/10 bg-black/50 p-4 mb-4">
+                  <h4 className="font-medium text-white mb-2">Current Configuration</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm text-white/70">Provider</p>
+                      <p className="text-white font-medium">{getProviderName()}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-white/70">Priority</p>
+                      <p className="text-white font-medium capitalize">{priority}</p>
+                    </div>
+                    <div className="md:col-span-2">
+                      <p className="text-sm text-white/70">Project Name</p>
+                      <p className="text-white font-medium">{projectName}</p>
+                    </div>
+                  </div>
                 </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="edit-project-name" className="text-white">Project Name</Label>
-                  <Input
-                    id="edit-project-name"
-                    value={projectName}
-                    onChange={(e) => setProjectName(e.target.value)}
-                    placeholder="Enter your project name"
-                    disabled={isLoading}
-                  />
+              
+                <div className="bg-black/50 border border-white/10 rounded-md p-4">
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="edit-api-key" className="text-white">API Key</Label>
+                      <Input
+                        id="edit-api-key"
+                        value={apiKey}
+                        onChange={(e) => setApiKey(e.target.value)}
+                        placeholder="Enter your AI provider API key"
+                        disabled={isLoading}
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="edit-project-name" className="text-white">Project Name</Label>
+                      <Input
+                        id="edit-project-name"
+                        value={projectName}
+                        onChange={(e) => setProjectName(e.target.value)}
+                        placeholder="Enter your project name"
+                        disabled={isLoading}
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="edit-priority" className="text-white">Priority</Label>
+                      <Select value={priority} onValueChange={setPriority} disabled={isLoading}>
+                        <SelectTrigger id="edit-priority" className="w-full border-white/20 bg-black text-white">
+                          <SelectValue placeholder="Select priority" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-black border border-white/20">
+                          <SelectItem value="speed" className="text-white">Speed</SelectItem>
+                          <SelectItem value="cost" className="text-white">Cost</SelectItem>
+                          <SelectItem value="accuracy" className="text-white">Accuracy</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    
+                    <Button 
+                      variant="orchesity" 
+                      className="w-full"
+                      onClick={saveSettings}
+                      disabled={isLoading}
+                    >
+                      {isLoading ? (
+                        <>
+                          <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                          Saving...
+                        </>
+                      ) : (
+                        "Save Changes"
+                      )}
+                    </Button>
+                  </div>
                 </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="edit-priority" className="text-white">Priority</Label>
-                  <Select value={priority} onValueChange={setPriority} disabled={isLoading}>
-                    <SelectTrigger id="edit-priority" className="w-full border-white/20 bg-black text-white">
-                      <SelectValue placeholder="Select priority" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-black border border-white/20">
-                      <SelectItem value="speed" className="text-white">Speed</SelectItem>
-                      <SelectItem value="cost" className="text-white">Cost</SelectItem>
-                      <SelectItem value="accuracy" className="text-white">Accuracy</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                <Button 
-                  variant="orchesity" 
-                  className="w-full"
-                  onClick={saveSettings}
-                  disabled={isLoading}
-                >
-                  {isLoading ? (
-                    <>
-                      <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                      Saving...
-                    </>
-                  ) : (
-                    "Save Changes"
-                  )}
-                </Button>
               </div>
             </TabsContent>
           </Tabs>
@@ -329,54 +385,81 @@ const SetupWizard = () => {
   }
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
-      <CardHeader>
-        <CardTitle>Quick Setup Wizard</CardTitle>
-        <div className="mt-2">
-          <Progress value={(step / 3) * 100} className="h-2" />
-          <p className="text-xs text-white/70 mt-2">Step {step} of 3</p>
-        </div>
-      </CardHeader>
-      <CardContent>
-        {isLoading && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-10 rounded-lg">
-            <Loader2 className="h-8 w-8 animate-spin text-white" />
+    <>
+      <Card className="w-full max-w-2xl mx-auto">
+        <CardHeader>
+          <CardTitle>Quick Setup Wizard</CardTitle>
+          <div className="mt-2">
+            <Progress value={(step / 3) * 100} className="h-2" />
+            <p className="text-xs text-white/70 mt-2">Step {step} of 3</p>
           </div>
-        )}
-        {renderStepContent()}
-      </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button 
-          variant="orchesity" 
-          onClick={handleBack} 
-          disabled={step === 1 || isLoading}
-          size={isMobile ? "sm" : "default"}
-          className="gap-2"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Back
-        </Button>
-        <Button 
-          variant="orchesity" 
-          onClick={handleNext} 
-          disabled={isLoading}
-          size={isMobile ? "sm" : "default"}
-          className="gap-2"
-        >
-          {isLoading ? (
-            <>
-              <Loader2 className="h-4 w-4 animate-spin" />
-              {step === 3 ? "Completing..." : "Processing..."}
-            </>
-          ) : (
-            <>
-              {step === 3 ? "Complete" : "Next"}
-              {step < 3 && <ArrowRight className="h-4 w-4" />}
-            </>
+        </CardHeader>
+        <CardContent>
+          {isLoading && (
+            <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-10 rounded-lg">
+              <Loader2 className="h-8 w-8 animate-spin text-white" />
+            </div>
           )}
-        </Button>
-      </CardFooter>
-    </Card>
+          {renderStepContent()}
+        </CardContent>
+        <CardFooter className="flex justify-between">
+          <Button 
+            variant="orchesity" 
+            onClick={handleBack} 
+            disabled={step === 1 || isLoading}
+            size={isMobile ? "sm" : "default"}
+            className="gap-2"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back
+          </Button>
+          <Button 
+            variant="orchesity" 
+            onClick={handleNext} 
+            disabled={isLoading}
+            size={isMobile ? "sm" : "default"}
+            className="gap-2"
+          >
+            {isLoading ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" />
+                {step === 3 ? "Completing..." : "Processing..."}
+              </>
+            ) : (
+              <>
+                {step === 3 ? "Complete" : "Next"}
+                {step < 3 && <ArrowRight className="h-4 w-4" />}
+              </>
+            )}
+          </Button>
+        </CardFooter>
+      </Card>
+
+      <AlertDialog open={showConfirmDialog} onOpenChange={setShowConfirmDialog}>
+        <AlertDialogContent className="bg-black text-white border border-white/20">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-white flex items-center gap-2">
+              <AlertCircle className="h-5 w-5 text-white" />
+              Confirm Activation
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-white/80">
+              Are you sure? This will start your service and allocate resources for your project.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel className="bg-black text-white border border-white/40 hover:bg-white/10">
+              No, Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction 
+              className="bg-black text-white border border-white hover:bg-white/10"
+              onClick={handleActivateRedis}
+            >
+              Yes, Activate
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import OrchesityNavbar from "@/components/orchesity/OrchesityNavbar";
 import SetupWizard from "@/components/orchesity/SetupWizard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Toaster } from "@/components/ui/toaster";
+import { AlertDialog, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 
 const Dashboard = () => {
   return (

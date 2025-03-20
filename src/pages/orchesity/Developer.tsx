@@ -6,11 +6,13 @@ import { Toaster } from "@/components/ui/toaster";
 
 const Developer = () => {
   return (
-    <>
+    <div className="min-h-screen bg-black text-white">
       <OrchesityNavbar />
-      <DeveloperPortal />
+      <main className="container mx-auto py-8 px-4">
+        <DeveloperPortal />
+      </main>
       <Toaster />
-    </>
+    </div>
   );
 };
 

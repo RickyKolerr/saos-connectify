@@ -6,11 +6,13 @@ import { Toaster } from "@/components/ui/toaster";
 
 const Business = () => {
   return (
-    <>
+    <div className="min-h-screen bg-black text-white">
       <OrchesityNavbar />
-      <BusinessPortal />
+      <main className="container mx-auto py-8 px-4">
+        <BusinessPortal />
+      </main>
       <Toaster />
-    </>
+    </div>
   );
 };
 
