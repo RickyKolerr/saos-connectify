@@ -1,19 +1,14 @@
 
 import React from "react";
+import OrchesityNavbar from "@/components/orchesity/OrchesityNavbar";
 import SetupWizard from "@/components/orchesity/SetupWizard";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Toaster } from "@/components/ui/toaster";
 
 const Dashboard = () => {
   return (
     <div className="min-h-screen bg-black text-white">
-      <header className="border-b border-white/10 p-4">
-        <div className="container mx-auto flex justify-between items-center">
-          <div className="text-xl font-bold">Orchesity</div>
-          <Button variant="orchesity" size="sm">Logout</Button>
-        </div>
-      </header>
+      <OrchesityNavbar />
 
       <main className="container mx-auto py-8 px-4">
         <h1 className="text-3xl font-bold mb-8">Dashboard</h1>

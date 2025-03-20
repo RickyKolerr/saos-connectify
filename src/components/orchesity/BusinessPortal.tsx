@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -6,7 +5,7 @@ import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AreaChart, BarChart } from "@/components/ui/chart";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { LogOut, DownloadCloud, Zap, Wallet, Clock, AlertCircle } from "lucide-react";
+import { DownloadCloud, Zap, Wallet, Clock, AlertCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const BusinessPortal = () => {
@@ -60,18 +59,7 @@ const BusinessPortal = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-black text-white">
-      {/* Header */}
-      <header className="border-b border-white/10 p-4">
-        <div className="container mx-auto flex justify-between items-center">
-          <div className="text-xl font-bold">Orchesity</div>
-          <Button variant="orchesity" size="sm" className="gap-2">
-            <LogOut className="h-4 w-4" />
-            Logout
-          </Button>
-        </div>
-      </header>
-
-      {/* Main Content */}
+      {/* Main Content - Removed the header since we now have a global navbar */}
       <div className="container mx-auto flex-1 py-8 px-4">
         <h1 className="text-3xl font-bold mb-6">Business Dashboard</h1>
         
