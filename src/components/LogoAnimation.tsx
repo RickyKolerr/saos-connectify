@@ -90,11 +90,11 @@ const LogoAnimation = () => {
           />
         ))}
         
-        {/* Main logo rhombus animation with shimmer effect */}
+        {/* Main logo shapes animation with shimmer effect */}
         <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
-          {/* Glowing backdrop for top rhombus */}
+          {/* Glowing backdrop for top hexagon */}
           <motion.path 
-            d="M64 16L96 48L64 80L32 48L64 16Z" 
+            d="M64 16 L88 30 L88 58 L64 72 L40 58 L40 30 Z" 
             fill="none"
             stroke="rgba(255,255,255,0.3)"
             strokeWidth="2"
@@ -104,18 +104,18 @@ const LogoAnimation = () => {
             className="filter blur-[4px]"
           />
           
-          {/* Top rhombus */}
+          {/* Top hexagon */}
           <motion.path 
-            d="M64 16L96 48L64 80L32 48L64 16Z" 
+            d="M64 16 L88 30 L88 58 L64 72 L40 58 L40 30 Z" 
             fill="white"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.3 }}
           />
           
-          {/* Glowing backdrop for middle rhombus */}
+          {/* Glowing backdrop for middle triangle */}
           <motion.path 
-            d="M64 36L96 68L64 100L32 68L64 36Z" 
+            d="M64 42 L94 87 L34 87 Z" 
             fill="none"
             stroke="rgba(255,255,255,0.3)"
             strokeWidth="2"
@@ -125,18 +125,20 @@ const LogoAnimation = () => {
             className="filter blur-[4px]"
           />
           
-          {/* Middle rhombus */}
+          {/* Middle triangle */}
           <motion.path 
-            d="M64 36L96 68L64 100L32 68L64 36Z" 
+            d="M64 42 L94 87 L34 87 Z" 
             fill="white"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.8 }}
           />
           
-          {/* Glowing backdrop for bottom rhombus */}
-          <motion.path 
-            d="M64 56L96 88L64 120L32 88L64 56Z" 
+          {/* Glowing backdrop for bottom circle */}
+          <motion.circle 
+            cx="64" 
+            cy="102" 
+            r="18" 
             fill="none"
             stroke="rgba(255,255,255,0.3)"
             strokeWidth="2"
@@ -146,9 +148,11 @@ const LogoAnimation = () => {
             className="filter blur-[4px]"
           />
           
-          {/* Bottom rhombus */}
-          <motion.path 
-            d="M64 56L96 88L64 120L32 88L64 56Z" 
+          {/* Bottom circle */}
+          <motion.circle 
+            cx="64" 
+            cy="102" 
+            r="18" 
             fill="white"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
