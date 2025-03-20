@@ -6,7 +6,7 @@ import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AreaChart, BarChart } from "@/components/ui/chart";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { LogOut, DownloadCloud, RefreshCw, Zap, Wallet, Clock, AlertCircle } from "lucide-react";
+import { LogOut, DownloadCloud, Zap, Wallet, Clock, AlertCircle } from "lucide-react";
 
 const BusinessPortal = () => {
   // Sample data for charts
@@ -106,9 +106,6 @@ const BusinessPortal = () => {
                 <CardHeader>
                   <CardTitle className="flex justify-between">
                     <span>Daily Requests</span>
-                    <Button variant="ghost" size="icon" className="text-white/80">
-                      <RefreshCw className="h-4 w-4" />
-                    </Button>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
