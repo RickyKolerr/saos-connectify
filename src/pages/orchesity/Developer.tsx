@@ -24,7 +24,7 @@ const Developer = () => {
         toast({
           title: "[EN] Rate Limit Warning",
           description: "[EN] Approaching API limit: 95/100 requests this hour.",
-          className: "border border-yellow-600/30 bg-white text-black",
+          className: "border border-yellow-600/30 bg-black text-white",
         });
       }, 5000); // 5 seconds for demo
     }
@@ -46,7 +46,7 @@ const Developer = () => {
         toast({
           title: "[EN] Connected",
           description: "[EN] Successfully reconnected to the Orchesity backend.",
-          className: "border border-black/20 bg-white text-black",
+          className: "border border-white/20 bg-black text-white",
         });
       } else {
         toast({
@@ -59,7 +59,7 @@ const Developer = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-black text-white">
       <OrchesityNavbar />
       <main className="container mx-auto py-8 px-4">
         <DeveloperPortal />

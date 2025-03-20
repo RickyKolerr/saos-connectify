@@ -41,7 +41,7 @@ const ApiTester = () => {
       toast({
         title: "[EN] Rate Limit Warning",
         description: `[EN] Approaching API limit: ${rateLimit.current}/${rateLimit.max} requests this hour.`,
-        className: "border border-yellow-600/30 bg-white text-black",
+        className: "border border-yellow-600/30 bg-black text-white",
       });
     }
     
@@ -105,13 +105,13 @@ const ApiTester = () => {
   };
 
   return (
-    <div className="border border-black/10 rounded-lg p-6 mb-8">
+    <div className="border border-white/10 rounded-lg p-6 mb-8">
       <h3 className="text-lg font-medium mb-4">[EN] Try it yourself</h3>
       
       {rateLimit.current >= rateLimit.max * 0.9 && (
-        <div className="mb-4 p-3 border border-yellow-600/30 rounded-md bg-yellow-100/10 flex items-center gap-2">
-          <AlertCircle className="h-5 w-5 text-yellow-700" />
-          <span className="text-yellow-700 text-sm">
+        <div className="mb-4 p-3 border border-yellow-600/30 rounded-md bg-yellow-900/10 flex items-center gap-2">
+          <AlertCircle className="h-5 w-5 text-yellow-300" />
+          <span className="text-yellow-300 text-sm">
             [EN] Approaching rate limit: {rateLimit.current}/{rateLimit.max} requests this hour
           </span>
         </div>
@@ -119,32 +119,32 @@ const ApiTester = () => {
       
       <div className="mb-4 space-y-4">
         <div>
-          <Label className="block text-sm text-black/80 mb-2" htmlFor="api-key">[EN] API Key</Label>
+          <Label className="block text-sm text-white/80 mb-2" htmlFor="api-key">[EN] API Key</Label>
           <Input 
             id="api-key"
             value={apiKey}
             onChange={(e) => setApiKey(e.target.value)}
             placeholder="[EN] Enter your API key for authenticated testing"
-            className="font-mono text-sm focus:outline-black focus:ring-2 focus:ring-black"
+            className="font-mono text-sm focus:outline-white focus:ring-2 focus:ring-white"
             type="password"
           />
-          <p className="mt-1 text-xs text-black/60">[EN] Format: xai-1234-abcd-5678-efgh</p>
+          <p className="mt-1 text-xs text-white/60">[EN] Format: xai-1234-abcd-5678-efgh</p>
         </div>
         
         <div>
-          <Label className="block text-sm text-black/80 mb-2" htmlFor="request-payload">[EN] Request Payload</Label>
+          <Label className="block text-sm text-white/80 mb-2" htmlFor="request-payload">[EN] Request Payload</Label>
           <Textarea 
             id="request-payload"
             value={payload}
             onChange={(e) => setPayload(e.target.value)}
-            className="font-mono text-sm mb-4 min-h-32 focus:outline-black focus:ring-2 focus:ring-black"
+            className="font-mono text-sm mb-4 min-h-32 focus:outline-white focus:ring-2 focus:ring-white"
           />
         </div>
         
         <Button 
           onClick={handleSendRequest} 
           variant="orchesity"
-          className="w-full md:w-auto focus:outline-black focus:ring-2 focus:ring-black"
+          className="w-full md:w-auto focus:outline-white focus:ring-2 focus:ring-white"
           disabled={isLoading}
         >
           {isLoading ? (
@@ -164,14 +164,14 @@ const ApiTester = () => {
         <div className="mt-6">
           <div className="flex justify-between items-center mb-2">
             <div className="flex items-center gap-2">
-              <label className="block text-sm text-black/80">[EN] Response</label>
+              <label className="block text-sm text-white/80">[EN] Response</label>
               {responseStatus === "success" ? (
-                <span className="flex items-center gap-1 text-green-600 text-xs">
+                <span className="flex items-center gap-1 text-green-400 text-xs">
                   <Check className="h-3 w-3" />
                   [EN] Success
                 </span>
               ) : (
-                <span className="flex items-center gap-1 text-red-600 text-xs">
+                <span className="flex items-center gap-1 text-red-400 text-xs">
                   <AlertTriangle className="h-3 w-3" />
                   {errorMessage}
                 </span>
@@ -180,7 +180,7 @@ const ApiTester = () => {
             <Button 
               variant="ghost" 
               size="sm" 
-              className="text-black/70 hover:text-black focus:outline-black focus:ring-2 focus:ring-black"
+              className="text-white/70 hover:text-white focus:outline-white focus:ring-2 focus:ring-white"
               onClick={copyResponse}
             >
               <Copy className="h-3.5 w-3.5 mr-1" />
@@ -188,7 +188,7 @@ const ApiTester = () => {
             </Button>
           </div>
           <pre className={`p-4 rounded-md font-mono text-sm overflow-x-auto ${
-            responseStatus === "error" ? "bg-red-100/20 border border-red-200/40" : "bg-[#f0f0f0]"
+            responseStatus === "error" ? "bg-red-900/20 border border-red-800/40" : "bg-[#1F1F1F]"
           }`}>
             {response}
           </pre>
