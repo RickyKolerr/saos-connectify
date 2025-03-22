@@ -26,7 +26,7 @@ const SEOHead = ({
   const { pathname } = useLocation();
   const siteUrl = "https://orchesity.com";
   const canonical = pathname ? `${siteUrl}${pathname}` : siteUrl;
-  const faviconUrl = "/lovable-uploads/0728b258-cfb3-4596-b9b2-6aeea7cb0115.png";
+  const faviconUrl = "/lovable-uploads/21b1b149-2184-4dea-9009-db94cd48af55.png";
 
   return (
     <Helmet>
@@ -72,6 +72,8 @@ const SEOHead = ({
           "name": title,
           "description": description,
           "url": canonical,
+          "image": faviconUrl,
+          "logo": faviconUrl,
           ...(article ? {
             "headline": title,
             "image": image,
