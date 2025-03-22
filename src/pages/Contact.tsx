@@ -42,7 +42,10 @@ const Contact = () => {
                       </div>
                       <div>
                         <h3 className="font-medium text-white mb-1">Call Us</h3>
-                        <p className="text-white/70">+1 (888) 555-ORCH</p>
+                        <p className="text-white/70">
+                          US: +1 (810) 351 7299<br />
+                          VN: +84 938 737 714
+                        </p>
                       </div>
                     </div>
                     
@@ -53,8 +56,9 @@ const Contact = () => {
                       <div>
                         <h3 className="font-medium text-white mb-1">Visit Us</h3>
                         <p className="text-white/70">
-                          100 Innovation Way<br />
-                          San Francisco, CA 94107
+                          B-0707, Block B - Sunrise Riverside Apt<br />
+                          Nguyen Huu Tho St, Nha Be District<br />
+                          Ho Chi Minh City 70000, VietNam
                         </p>
                       </div>
                     </div>
@@ -67,7 +71,7 @@ const Contact = () => {
                         <h3 className="font-medium text-white mb-1">Live Chat</h3>
                         <p className="text-white/70">
                           Available Monday-Friday<br />
-                          9am-6pm PT
+                          9am-6pm
                         </p>
                       </div>
                     </div>
